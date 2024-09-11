@@ -1,12 +1,17 @@
-import Collumns from "./components/Columns";
+import { Collumns } from "~/modules/dashboard/components/columns";
 import * as S from "./styles";
 import { SearchBar } from "./components/Searchbar";
+import { useGetRegistrationsQuery } from "~/modules/dashboard/queries/use-get-registrations-query";
+import { GetRegistrationsResponse } from "~/modules/shared/types";
+import * as React from "react";
 
-const DashboardPage = () => {
+const DashboardPage: React.FC = () => {
+  const { data: registrations } = useGetRegistrationsQuery();
+
   return (
     <S.Container>
       <SearchBar />
-      <Collumns registrations={[]} />
+      <Collumns registrations={registrations as GetRegistrationsResponse} />
     </S.Container>
   );
 };

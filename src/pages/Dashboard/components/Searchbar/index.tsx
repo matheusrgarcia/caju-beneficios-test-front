@@ -5,16 +5,17 @@ import { IconButton } from "~/components/Buttons/IconButton";
 import TextField from "~/components/TextField";
 import routes from "~/router/routes";
 import * as S from "./styles";
-export const SearchBar = () => {
+
+export const SearchBar: React.FC = () => {
   const history = useHistory();
 
-  const goToNewAdmissionPage = () => {
+  const goToNewAdmissionPage = (): void => {
     history.push(routes.newUser);
   };
-  
+
   return (
     <S.Container>
-      <TextField  placeholder="Digite um CPF válido" />
+      <TextField placeholder="Digite um CPF válido" />
       <S.Actions>
         <IconButton aria-label="refetch">
           <HiRefresh />
