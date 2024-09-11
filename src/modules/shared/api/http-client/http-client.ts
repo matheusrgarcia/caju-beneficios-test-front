@@ -13,11 +13,11 @@ export class HttpClient {
     this.instance.interceptors.response.use(this.handleSuccess, this.handleError);
   }
 
-  private handleSuccess(response: AxiosResponse) {
+  private handleSuccess(response: AxiosResponse): AxiosResponse {
     return response;
   }
 
-  private handleError(error: AxiosError) {
+  private handleError(error: AxiosError): Promise<never> {
     console.error(error)
     return Promise.reject(error);
   }

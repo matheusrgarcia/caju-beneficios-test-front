@@ -1,11 +1,14 @@
 import { HashRouter, Redirect, Route, Switch } from "react-router-dom";
 import routes from "./routes";
-import DashboardPage from "~/pages/Dashboard";
-import NewUserPage from "~/pages/NewUser";
+import DashboardPage from "~/pages/dashboard";
+import NewUserPage from "~/pages/new-user";
+import * as React from "react";
 
-const Router = () => {
+const Router: React.FC = () => {
   return (
+    // TODO: Router com estilos, remove
     <div style={{ marginTop: 64 }}>
+      {/* // TODO: Why HashRouter? */}
       <HashRouter>
         <Switch>
           <Route exact path={routes.dashboard} component={DashboardPage} />

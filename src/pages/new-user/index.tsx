@@ -1,14 +1,18 @@
-import TextField from "~/components/TextField";
-import * as S from "./styles";
-import Button from "~/components/Buttons";
-import { HiOutlineArrowLeft } from "react-icons/hi";
-import { IconButton } from "~/components/Buttons/IconButton";
 import { useHistory } from "react-router-dom";
+import { HiOutlineArrowLeft } from "react-icons/hi";
+
+import { TextField } from "~/components/text-field";
+import { Button } from "~/components/buttons/button";
+import { IconButton } from "~/components/buttons/icon-button";
 import routes from "~/router/routes";
 
-const NewUserPage = () => {
+import * as S from "./styles";
+import * as React from "react";
+
+const NewUserPage: React.FC = () => {
   const history = useHistory();
-  const goToHome = () => {
+
+  const goToHome = (): void => {
     history.push(routes.dashboard);
   };
 
@@ -22,7 +26,13 @@ const NewUserPage = () => {
         <TextField placeholder="Email" label="Email" type="email" />
         <TextField placeholder="CPF" label="CPF" />
         <TextField label="Data de admissão" type="date" />
-        <Button onClick={() => {}}>Cadastrar</Button>
+        <Button
+          onClick={() => {
+            console.error("Missing functionality");
+          }}
+        >
+          Cadastrar
+        </Button>
       </S.Card>
     </S.Container>
   );

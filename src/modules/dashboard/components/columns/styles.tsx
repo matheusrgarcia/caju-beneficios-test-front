@@ -4,7 +4,7 @@ import { RegistrationStatus } from "../../constants";
 type RegistrationStatusKeys = keyof typeof RegistrationStatus;
 
 const registrationStatusStyles: Record<
-  RegistrationStatus,
+  RegistrationStatusKeys,
   { background: string; title: string }
 > = {
   [RegistrationStatus.REVIEW]: {
@@ -32,7 +32,7 @@ export const Container = styled.div`
 export const Column = styled.div<{ status: RegistrationStatusKeys }>`
   height: auto;
   background-color: ${({ status }) =>
-    registrationStatusStyles[status as unknown as RegistrationStatus]?.background};
+    registrationStatusStyles[status as RegistrationStatusKeys]?.background};
   border-radius: 32px;
   min-height: 80vh;
   max-height: 80vh;
@@ -40,11 +40,12 @@ export const Column = styled.div<{ status: RegistrationStatusKeys }>`
 
 export const TitleColumn = styled.h3<{ status: RegistrationStatusKeys }>`
   margin: 0px;
-  color: ${({ status }) => registrationStatusStyles[status as unknown as RegistrationStatus]?.title};
+  color: ${({ status }) =>
+    registrationStatusStyles[status as RegistrationStatusKeys]?.title};
   margin: 24px;
 `;
 
-export const CollumContent = styled.div`
+export const ColumnContent = styled.div`
   overflow: auto;
   max-height: 85%;
 `;

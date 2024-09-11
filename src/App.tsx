@@ -2,7 +2,7 @@ import Router from "~/router";
 import { Header } from "./components/Header";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-function App() {
+const App: React.FC = () => {
   const queryClient = new QueryClient();
 
   return (
@@ -13,6 +13,6 @@ function App() {
       <Router />
     </QueryClientProvider>
   );
-}
+};
 
 export default App;
