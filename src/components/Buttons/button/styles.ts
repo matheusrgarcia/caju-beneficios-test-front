@@ -12,11 +12,10 @@ export const StyledButton = styled.button<{
   border: none;
   cursor: pointer;
   border-radius: ${({ $variant }) => ($variant === "small" ? "4px" : "36px")};
-  padding: ${({ $variant }) => ($variant === "small" ? "4px 16px" : "8px 32px")};
-  background-color: ${({ $bgcolor, $variant }) =>
-    $bgcolor ?? ($variant === "small" ? "none" : "#64a98c")};
-  color: ${({ $color, $variant }) =>
-    $color ?? ($variant === "small" ? "#000" : "#fff")};
+  padding: ${({ $variant }) =>
+    $variant === "small" ? "4px 16px" : "8px 32px"};
+  background-color: ${({ $bgcolor }) => $bgcolor ?? "#64a98c"};
+  color: ${({ $color }) => $color ?? "#fff"};
   font-size: ${({ $variant }) => ($variant === "small" ? "12px" : "16px")};
   font-weight: 600;
   display: flex;

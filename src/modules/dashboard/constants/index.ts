@@ -13,7 +13,7 @@ export const RegistrationStatus = {
   REPROVED: "REPROVED"
 } as const;
 
-// TODO: Maybe add INTL? Lets see if there's enough time to do this
+
 export const dashboardColumnItems = [
   { status: RegistrationStatus.REVIEW, title: "Pronto para revisar" },
   { status: RegistrationStatus.APPROVED, title: "Aprovado" },

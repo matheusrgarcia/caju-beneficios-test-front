@@ -6,13 +6,16 @@ import { IconButton } from "~/components/buttons/icon-button";
 
 import routes from "~/router/routes";
 import * as S from "./styles";
+import useScreenSize from "~/modules/shared/utils/useScreenSize";
 
 interface SearchBarProps {
+  // eslint-disable-next-line no-unused-vars
   onChange?: (value: string) => void;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
   const history = useHistory();
+  const { isMobile } = useScreenSize();
 
   // Function to handle the value change (masked value)
   const handleMaskedChange = (maskedValue: string): void => {
@@ -37,7 +40,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
         <IconButton aria-label="refetch">
           <HiRefresh />
         </IconButton>
-        <Button onClick={goToNewAdmissionPage}>Nova Admissão</Button>
+        <Button
+          variant={isMobile ? "small" : "default"}
+          onClick={goToNewAdmissionPage}
+        >
+          Nova Admissão
+        </Button>
       </S.Actions>
     </S.Container>
   );

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { RegistrationStatus } from "../../constants";
+import tokens from "~/modules/shared/tokens";
 
 type RegistrationStatusKeys = keyof typeof RegistrationStatus;
 
@@ -9,7 +10,7 @@ const registrationStatusStyles: Record<
 > = {
   [RegistrationStatus.REVIEW]: {
     background: "#FDF8E9",
-    title: "#EFC24D",
+    title: "#b38206",
   },
   [RegistrationStatus.APPROVED]: {
     background: "#EEEEFD",
@@ -27,6 +28,17 @@ export const Container = styled.div`
   grid-gap: 24px;
   justify-content: center;
   margin-top: 24px;
+
+  @media screen and (max-width: ${tokens.breakpoints.s}) {
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+    justify-content: start;
+
+    * > {
+      flex: 1;
+    }
+  }
 `;
 
 export const Column = styled.div<{ status: RegistrationStatusKeys }>`

@@ -22,6 +22,9 @@ const RegistrationCard: React.FC<Props> = ({ registration }) => {
 
   return (
     <S.Card>
+      <S.Delete>
+        <HiOutlineTrash />
+      </S.Delete>
       <S.IconAndText>
         <HiOutlineUser />
         <h3>{employeeName}</h3>
@@ -35,17 +38,15 @@ const RegistrationCard: React.FC<Props> = ({ registration }) => {
         <span>{admissionDate}</span>
       </S.IconAndText>
       <S.Actions>
-        <Button variant="small" bgcolor="rgb(255, 145, 154)">
+        <Button variant="small" bgcolor="rgb(198, 9, 25)">
           Reprovar
         </Button>
-        <Button variant="small" bgcolor="rgb(155, 229, 155)">
+        <Button variant="small" bgcolor="rgb(20, 137, 20)">
           Aprovar
         </Button>
-        <Button variant="small" bgcolor="#ff8858">
+        <Button variant="small" bgcolor="#851b6c">
           Revisar novamente
         </Button>
-
-        <HiOutlineTrash />
       </S.Actions>
     </S.Card>
   );

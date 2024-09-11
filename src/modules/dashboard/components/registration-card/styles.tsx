@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Card = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   gap: 4px;
   border: 4px solid #fff;
@@ -13,7 +14,21 @@ export const Card = styled.div`
   p {
     margin: 0;
   }
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+`;
+
+export const Delete = styled.button`
+  display: flex;
+  align-self: flex-end;
+  position: absolute;
+  cursor: pointer;
+  background: none;
+  border: none;
+
+  svg {
+    width: 16px;
+    height: 24px;
+  }
 `;
 
 export const IconAndText = styled.div`
@@ -25,7 +40,6 @@ export const IconAndText = styled.div`
 export const Actions = styled.div`
   margin-top: 8px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 4px;
 
