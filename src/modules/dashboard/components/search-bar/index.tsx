@@ -7,6 +7,7 @@ import { IconButton } from "~/components/buttons/icon-button";
 import routes from "~/router/routes";
 import * as S from "./styles";
 import useScreenSize from "~/modules/shared/utils/useScreenSize";
+import { useGetRegistrationsQuery } from "../../queries/use-get-registrations-query";
 
 interface SearchBarProps {
   // eslint-disable-next-line no-unused-vars
@@ -15,12 +16,12 @@ interface SearchBarProps {
 
 export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
   const history = useHistory();
+  const { refetch } = useGetRegistrationsQuery();
   const { isMobile } = useScreenSize();
 
-  // Function to handle the value change (masked value)
   const handleMaskedChange = (maskedValue: string): void => {
     if (onChange) {
-      onChange(maskedValue); // Call parent onChange with the masked value
+      onChange(maskedValue);
     }
   };
 
@@ -37,7 +38,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
         {...rest}
       />
       <S.Actions>
-        <IconButton aria-label="refetch">
+        <IconButton aria-label="refetch" onClick={() => refetch()}>
           <HiRefresh />
         </IconButton>
         <Button

@@ -6,25 +6,21 @@ import * as React from "react";
 
 const Router: React.FC = () => {
   return (
-    // TODO: Router com estilos, remove
-    <div style={{ marginTop: 64 }}>
-      {/* // TODO: Why HashRouter? */}
-      <HashRouter>
-        <Switch>
-          <Route exact path={routes.dashboard} component={DashboardPage} />
-          <Route exact path={routes.newUser} component={NewUserPage} />
-          <Route
-            exact
-            path={routes.history}
-            component={() => <div>History</div>}
-          />
+    <HashRouter>
+      <Switch>
+        <Route exact path={routes.dashboard} component={DashboardPage} />
+        <Route exact path={routes.newUser} component={NewUserPage} />
+        <Route
+          exact
+          path={routes.history}
+          component={() => <div>History</div>}
+        />
 
-          <Route exact path="*">
-            <Redirect to={routes.dashboard} />
-          </Route>
-        </Switch>
-      </HashRouter>
-    </div>
+        <Route exact path="*">
+          <Redirect to={routes.dashboard} />
+        </Route>
+      </Switch>
+    </HashRouter>
   );
 };
 

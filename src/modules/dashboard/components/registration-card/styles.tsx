@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import tokens from "~/modules/shared/tokens";
 
 export const Card = styled.div`
   display: flex;
@@ -21,14 +22,11 @@ export const Delete = styled.button`
   display: flex;
   align-self: flex-end;
   position: absolute;
-  cursor: pointer;
+  top: 0;
+  right: 0;
   background: none;
   border: none;
-
-  svg {
-    width: 16px;
-    height: 24px;
-  }
+  cursor: pointer;
 `;
 
 export const IconAndText = styled.div`
@@ -38,12 +36,19 @@ export const IconAndText = styled.div`
 `;
 
 export const Actions = styled.div`
-  margin-top: 8px;
+  margin-top: ${tokens.space.regular};
   display: flex;
+  /* grid-template-columns: 1fr 1fr 2fr; */
   align-items: center;
   gap: 4px;
 
-  svg {
-    cursor: pointer;
+  & > * {
+    flex: 1;
+    height: 52px;
+    min-width: 0;
+  }
+
+  @media screen and (max-width: ${tokens.breakpoints.s}) {
+    grid-template-columns: 1fr;
   }
 `;

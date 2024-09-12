@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import { RegistrationStatus } from "../../constants";
+import { RegistrationStatus, RegistrationStatusKeys } from "../../constants";
 import tokens from "~/modules/shared/tokens";
-
-type RegistrationStatusKeys = keyof typeof RegistrationStatus;
 
 const registrationStatusStyles: Record<
   RegistrationStatusKeys,
