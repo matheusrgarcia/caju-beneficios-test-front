@@ -1,26 +1,32 @@
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import {
+  useMutation,
+  UseMutationResult,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 import * as service from "../../shared/services";
 import {
+  Registration,
   REGISTRATION_MUTATION_KEYS,
-  RegistrationStatusKeys,
+  REGISTRATION_QUERY_KEYS,
 } from "../constants";
 
-type UpdateRegistratiobRequest = {
+type UpdateRegistrationRequest = {
   id: string;
-  status?: RegistrationStatusKeys;
 };
 
 export const useDeleteRegistrationMutation = (): UseMutationResult<
   unknown,
   AxiosError<string | number | Record<string, string>, unknown>,
-  UpdateRegistratiobRequest,
+  UpdateRegistrationRequest,
   unknown
 > => {
-  const updateRegistration = useMutation({
+  const queryClient = useQueryClient();
+
+  const deleteRegistration = useMutation({
     mutationKey: [REGISTRATION_MUTATION_KEYS.delete],
-    mutationFn: async ({ id }: UpdateRegistratiobRequest) => {
+    mutationFn: async ({ id }: UpdateRegistrationRequest) => {
       if (!id) {
         return Promise.reject();
       }
@@ -29,9 +35,16 @@ export const useDeleteRegistrationMutation = (): UseMutationResult<
     onError: (error: AxiosError<string | number | Record<string, string>>) => {
       console.error(error);
     },
-    onSuccess: () => {
-      console.log("successful deletion");
+    onSuccess: (_, { id }) => {
+      queryClient.setQueryData(
+        [REGISTRATION_QUERY_KEYS.getRegistrations],
+        (oldData: Registration[] | undefined) => {
+          if (!oldData) return [];
+          return oldData.filter((registration) => registration.id !== id);
+        }
+      );
     },
   });
-  return updateRegistration;
+
+  return deleteRegistration;
 };

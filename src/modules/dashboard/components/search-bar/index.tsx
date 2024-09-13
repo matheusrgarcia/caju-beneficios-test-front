@@ -1,13 +1,12 @@
 import { HiRefresh } from "react-icons/hi";
+import { FaPlus } from "react-icons/fa6";
 import { useHistory } from "react-router-dom";
-
-import { Button } from "~/components/buttons/button";
-import { IconButton } from "~/components/buttons/icon-button";
 
 import routes from "~/router/routes";
 import * as S from "./styles";
-import useScreenSize from "~/modules/shared/utils/useScreenSize";
 import { useGetRegistrationsQuery } from "../../queries/use-get-registrations-query";
+import { IconButton } from "@mui/material";
+import { Button } from "~/modules/shared/components/buttons/button";
 
 interface SearchBarProps {
   // eslint-disable-next-line no-unused-vars
@@ -17,7 +16,6 @@ interface SearchBarProps {
 export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
   const history = useHistory();
   const { refetch } = useGetRegistrationsQuery();
-  const { isMobile } = useScreenSize();
 
   const handleMaskedChange = (maskedValue: string): void => {
     if (onChange) {
@@ -30,7 +28,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
   };
 
   return (
-    <S.Container>
+    <S.SearchBarContainer>
       <S.CpfInput
         mask="000.000.000-00"
         onAccept={handleMaskedChange}
@@ -42,12 +40,14 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
           <HiRefresh />
         </IconButton>
         <Button
-          variant={isMobile ? "small" : "default"}
+          variant="outlined"
+          color="success"
           onClick={goToNewAdmissionPage}
+          endIcon={<FaPlus />}
         >
           Nova Admissão
         </Button>
       </S.Actions>
-    </S.Container>
+    </S.SearchBarContainer>
   );
 };

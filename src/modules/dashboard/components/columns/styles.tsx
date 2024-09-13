@@ -32,10 +32,6 @@ export const Container = styled.div`
     overflow-x: auto;
     width: 100%;
     justify-content: start;
-
-    * > {
-      flex: 1;
-    }
   }
 `;
 
@@ -44,8 +40,12 @@ export const Column = styled.div<{ status: RegistrationStatusKeys }>`
   background-color: ${({ status }) =>
     registrationStatusStyles[status as RegistrationStatusKeys]?.background};
   border-radius: 32px;
-  min-height: 80vh;
-  max-height: 80vh;
+  min-height: 80dvh;
+  max-height: 80dvh;
+
+  @media screen and (max-width: ${tokens.breakpoints.s}) {
+    min-width: 80%;
+  }
 `;
 
 export const TitleColumn = styled.h3<{ status: RegistrationStatusKeys }>`

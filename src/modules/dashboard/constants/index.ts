@@ -35,4 +35,5 @@ export type Registration = {
   admissionDate: string;
   email: string;
   id: string;
+  status: RegistrationStatusKeys;
 };

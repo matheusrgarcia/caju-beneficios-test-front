@@ -1,108 +1,20 @@
 {
   "registrations": [
     {
-      "id": "1",
       "admissionDate": "22/10/2023",
       "email": "filipe@caju.com.br",
       "employeeName": "Filipe Marins",
-      "status": "REVIEW",
-      "cpf": "78502270001"
-    },
-    {
-      "id": "2",
-      "admissionDate": "22/10/2023",
-      "email": "jose@caju.com.br",
-      "employeeName": "José Leão",
-      "status": "REPROVED",
-      "cpf": "78502270001"
-    },
-    {
-      "id": "3",
-      "admissionDate": "22/10/2023",
-      "email": "luiz@caju.com.br",
-      "employeeName": "Luiz Filho",
       "status": "APPROVED",
-      "cpf": "56642105087"
+      "cpf": "78502270001",
+      "id": "1"
     },
     {
-      "id": "4",
-      "admissionDate": "23/10/2023",
-      "email": "maria@caju.com.br",
-      "employeeName": "Maria Silva",
-      "status": "APPROVED",
-      "cpf": "85472139022"
-    },
-    {
-      "id": "5",
       "admissionDate": "23/10/2023",
       "email": "carla@caju.com.br",
       "employeeName": "Carla Souza",
       "status": "REVIEW",
-      "cpf": "15482170034"
-    },
-    {
-      "id": "6",
-      "admissionDate": "24/10/2023",
-      "email": "roberto@caju.com.br",
-      "employeeName": "Roberto Nunes",
-      "status": "REPROVED",
-      "cpf": "54521234091"
-    },
-    {
-      "id": "7",
-      "admissionDate": "25/10/2023",
-      "email": "ana@caju.com.br",
-      "employeeName": "Ana Martins",
-      "status": "APPROVED",
-      "cpf": "36542118077"
-    },
-    {
-      "id": "8",
-      "admissionDate": "25/10/2023",
-      "email": "marcos@caju.com.br",
-      "employeeName": "Marcos Pires",
-      "status": "REVIEW",
-      "cpf": "89453211056"
-    },
-    {
-      "id": "9",
-      "admissionDate": "26/10/2023",
-      "email": "joana@caju.com.br",
-      "employeeName": "Joana Oliveira",
-      "status": "APPROVED",
-      "cpf": "74125896312"
-    },
-    {
-      "id": "10",
-      "admissionDate": "26/10/2023",
-      "email": "fabio@caju.com.br",
-      "employeeName": "Fabio Santos",
-      "status": "REPROVED",
-      "cpf": "12345678901"
-    },
-    {
-      "id": "11",
-      "admissionDate": "27/10/2023",
-      "email": "pedro@caju.com.br",
-      "employeeName": "Pedro Ferreira",
-      "status": "APPROVED",
-      "cpf": "98765432109"
-    },
-    {
-      "id": "12",
-      "admissionDate": "27/10/2023",
-      "email": "paula@caju.com.br",
-      "employeeName": "Paula Cardoso",
-      "status": "REVIEW",
-      "cpf": "55566677788"
-    },
-    {
-      "id": "13",
-      "admissionDate": "28/10/2023",
-      "email": "bruno@caju.com.br",
-      "employeeName": "Bruno Costa",
-      "status": "APPROVED",
-      "cpf": "22233344455"
+      "cpf": "15482170034",
+      "id": "5"
     },
     {
       "id": "14",
@@ -113,60 +25,12 @@
       "cpf": "11122233344"
     },
     {
-      "id": "15",
-      "admissionDate": "29/10/2023",
-      "email": "thiago@caju.com.br",
-      "employeeName": "Thiago Almeida",
-      "status": "APPROVED",
-      "cpf": "33344455566"
-    },
-    {
-      "id": "16",
-      "admissionDate": "29/10/2023",
-      "email": "camila@caju.com.br",
-      "employeeName": "Camila Figueiredo",
-      "status": "REVIEW",
-      "cpf": "44455566677"
-    },
-    {
-      "id": "17",
-      "admissionDate": "30/10/2023",
-      "email": "eduardo@caju.com.br",
-      "employeeName": "Eduardo Mello",
-      "status": "APPROVED",
-      "cpf": "66677788899"
-    },
-    {
-      "id": "18",
-      "admissionDate": "30/10/2023",
-      "email": "fernanda@caju.com.br",
-      "employeeName": "Fernanda Lima",
-      "status": "REPROVED",
-      "cpf": "99988877766"
-    },
-    {
-      "id": "19",
-      "admissionDate": "31/10/2023",
-      "email": "gustavo@caju.com.br",
-      "employeeName": "Gustavo Rocha",
-      "status": "APPROVED",
-      "cpf": "77788899911"
-    },
-    {
       "id": "20",
       "admissionDate": "31/10/2023",
       "email": "renata@caju.com.br",
       "employeeName": "Renata Teixeira",
       "status": "REVIEW",
       "cpf": "33322211144"
-    },
-    {
-      "id": "21",
-      "admissionDate": "01/11/2023",
-      "email": "claudia@caju.com.br",
-      "employeeName": "Cláudia da Conceição Ferreira Mendes",
-      "status": "APPROVED",
-      "cpf": "65432198700"
     },
     {
       "id": "22",
@@ -185,12 +49,12 @@
       "cpf": "44433322255"
     },
     {
-      "id": "24",
       "admissionDate": "02/11/2023",
       "email": "diego@caju.com.br",
       "employeeName": "Diego Henrique Batista Moreira",
-      "status": "APPROVED",
-      "cpf": "88877766644"
+      "status": "REVIEW",
+      "cpf": "88877766644",
+      "id": "24"
     }
   ]
 }

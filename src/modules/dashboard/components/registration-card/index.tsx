@@ -5,14 +5,11 @@ import {
   HiOutlineCalendar,
   HiOutlineTrash,
 } from "react-icons/hi";
-import { Button, IconButton } from "@mui/material";
-import { useUpdateRegistrationMutation } from "../../mutations/use-update-registration-mutation";
-import {
-  Registration,
-  RegistrationStatus,
-  RegistrationStatusKeys,
-} from "../../constants";
+import { IconButton } from "@mui/material";
+
+import { Registration } from "../../constants";
 import { useDeleteRegistrationMutation } from "../../mutations/use-delete-registration-mutation";
+import { RegistrationCardActions } from "./card-actions";
 
 type Props = {
   registration: Registration;
@@ -21,18 +18,9 @@ type Props = {
 const RegistrationCard: React.FC<Props> = ({ registration }) => {
   const { employeeName, email, admissionDate, id } = registration;
 
-  const updateRegistration = useUpdateRegistrationMutation();
   const deleteRegistration = useDeleteRegistrationMutation();
 
-  const handleAction = (status: RegistrationStatusKeys) => {
-    updateRegistration.mutate({
-      ...registration,
-      id,
-      status,
-    });
-  };
-
-  const handleDeletion = () => {
+  const handleRegistrationDeletion = (): void => {
     deleteRegistration.mutate({
       id,
     });
@@ -41,7 +29,7 @@ const RegistrationCard: React.FC<Props> = ({ registration }) => {
   return (
     <S.Card>
       <S.Delete>
-        <IconButton aria-label="delete" size="medium" onClick={handleDeletion}>
+        <IconButton aria-label="delete" size="medium" onClick={handleRegistrationDeletion}>
           <HiOutlineTrash />
         </IconButton>
       </S.Delete>
@@ -57,32 +45,7 @@ const RegistrationCard: React.FC<Props> = ({ registration }) => {
         <HiOutlineCalendar />
         <span>{admissionDate}</span>
       </S.IconAndText>
-      <S.Actions>
-        <Button
-          variant="contained"
-          color="secondary"
-          size="medium"
-          onClick={() => handleAction(RegistrationStatus.REVIEW)}
-        >
-          Revisar novamente
-        </Button>
-        <Button
-          variant="contained"
-          color="success"
-          size="medium"
-          onClick={() => handleAction(RegistrationStatus.APPROVED)}
-        >
-          Aprovar
-        </Button>
-        <Button
-          variant="contained"
-          color="error"
-          size="medium"
-          onClick={() => handleAction(RegistrationStatus.REPROVED)}
-        >
-          Reprovar
-        </Button>
-      </S.Actions>
+      <RegistrationCardActions registration={registration} />
     </S.Card>
   );
 };

@@ -1,20 +1,20 @@
 import * as React from "react";
 
 import { Columns } from "~/modules/dashboard/components/columns";
-import { SearchBar } from "../../modules/dashboard/components/search-bar";
+import { SearchBar } from "../../components/search-bar";
 import { useGetRegistrationsQuery } from "~/modules/dashboard/queries/use-get-registrations-query";
 import { GetRegistrationsResponse } from "~/modules/shared/types";
 
-import * as S from './styles'
+import { Container } from "~/modules/shared/components/container";
 
 const DashboardPage: React.FC = () => {
   const { data: registrations } = useGetRegistrationsQuery();
 
   return (
-    <S.Container>
+    <Container>
       <SearchBar />
       <Columns registrations={registrations as GetRegistrationsResponse} />
-    </S.Container>
+    </Container>
   );
 };
 export default DashboardPage;

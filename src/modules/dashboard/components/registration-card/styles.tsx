@@ -7,9 +7,9 @@ export const Card = styled.div`
   flex-direction: column;
   gap: 4px;
   border: 4px solid #fff;
-  margin: 16px;
+  margin: ${tokens.space.small};
   border-radius: 8px;
-  padding: 16px;
+  padding: ${tokens.space.smaller};
   background-color: #fff;
   h3,
   p {

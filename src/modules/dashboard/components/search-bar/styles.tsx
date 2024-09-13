@@ -1,18 +1,22 @@
 import { IMaskInput } from "react-imask";
 import styled from "styled-components";
+import tokens from "~/modules/shared/tokens";
 
-export const Container = styled.div`
+export const SearchBarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
 `;
 
 export const Actions = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 16px;
+  gap: ${tokens.space.regular};
+
+  @media screen and (max-width: ${tokens.breakpoints.s}) {
+    gap: 0;
+  }
 `;
 
 export const CpfInput = styled(IMaskInput)`

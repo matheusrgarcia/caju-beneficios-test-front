@@ -1,8 +1,9 @@
 import { HashRouter, Redirect, Route, Switch } from "react-router-dom";
-import routes from "./routes";
-import DashboardPage from "~/pages/dashboard";
-import NewUserPage from "~/pages/new-user";
 import * as React from "react";
+
+import routes from "./routes";
+import DashboardPage from "~/modules/dashboard/views/main";
+import NewUserPage from "~/modules/new-user/views/main";
 
 const Router: React.FC = () => {
   return (
@@ -10,11 +11,6 @@ const Router: React.FC = () => {
       <Switch>
         <Route exact path={routes.dashboard} component={DashboardPage} />
         <Route exact path={routes.newUser} component={NewUserPage} />
-        <Route
-          exact
-          path={routes.history}
-          component={() => <div>History</div>}
-        />
 
         <Route exact path="*">
           <Redirect to={routes.dashboard} />
