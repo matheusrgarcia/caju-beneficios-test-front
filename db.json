@@ -25,20 +25,20 @@
       "cpf": "11122233344"
     },
     {
-      "id": "20",
       "admissionDate": "31/10/2023",
       "email": "renata@caju.com.br",
       "employeeName": "Renata Teixeira",
-      "status": "REVIEW",
-      "cpf": "33322211144"
+      "status": "REPROVED",
+      "cpf": "33322211144",
+      "id": "20"
     },
     {
-      "id": "22",
       "admissionDate": "01/11/2023",
       "email": "joao@caju.com.br",
       "employeeName": "João Paulo Santos de Souza",
-      "status": "REVIEW",
-      "cpf": "99900088811"
+      "status": "APPROVED",
+      "cpf": "99900088811",
+      "id": "22"
     },
     {
       "id": "23",
