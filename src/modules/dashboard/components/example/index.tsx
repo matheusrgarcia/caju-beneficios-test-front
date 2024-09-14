@@ -9,9 +9,15 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
-import { Registration, RegistrationStatus, RegistrationStatusKeys } from "~/modules/shared/constants";
+import {
+  Registration,
+  RegistrationStatus,
+  RegistrationStatusKeys,
+} from "~/modules/shared/constants";
 import Container from "../dragable-container";
 import RegistrationCard from "../registration-card";
+
+import * as S from "./styles";
 import { useUpdateRegistrationMutation } from "../../mutations/use-update-registration-mutation";
 
 type ExampleProps = {
@@ -24,11 +30,6 @@ type ItemsState = {
   reprovedRoot: Registration[];
 };
 
-const wrapperStyle = {
-  display: "flex",
-  flexDirection: "row",
-};
-
 export const Example: React.FC<ExampleProps> = ({ registrations }) => {
   const [items, setItems] = useState<ItemsState>({
     reviewRoot: [],
@@ -38,7 +39,7 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
 
   const [activeItem, setActiveItem] = useState<Registration | null>(null);
 
-  const updateRegistration = useUpdateRegistrationMutation(); // Initialize the mutation
+  const updateRegistration = useUpdateRegistrationMutation();
 
   useEffect(() => {
     const inReviewItems = registrations?.filter(
@@ -71,7 +72,6 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
     })
   );
 
-  // Modify findContainer to check both the items and the container ID directly
   const findContainer = (id: string): keyof ItemsState | undefined => {
     if (id in items) {
       return id as keyof ItemsState;
@@ -99,7 +99,11 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
     const activeContainer = findContainer(activeId);
     const overContainer = findContainer(overId);
 
-    if (!activeContainer || !overContainer || activeContainer === overContainer) {
+    if (
+      !activeContainer ||
+      !overContainer ||
+      activeContainer === overContainer
+    ) {
       return;
     }
 
@@ -134,12 +138,20 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
     const activeContainer = findContainer(activeId);
     const overContainer = findContainer(overId);
 
-    if (!activeContainer || !overContainer || activeContainer !== overContainer) {
+    if (
+      !activeContainer ||
+      !overContainer ||
+      activeContainer !== overContainer
+    ) {
       return;
     }
 
-    const activeIndex = items[activeContainer].findIndex((item) => item.id === activeId);
-    const overIndex = items[overContainer].findIndex((item) => item.id === overId);
+    const activeIndex = items[activeContainer].findIndex(
+      (item) => item.id === activeId
+    );
+    const overIndex = items[overContainer].findIndex(
+      (item) => item.id === overId
+    );
 
     if (activeIndex !== overIndex) {
       setItems((prev) => ({
@@ -148,8 +160,13 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
       }));
     }
 
-    // Update the registration status based on the new container
-    let newStatus: RegistrationStatusKeys;
+    // Ensure activeItem is not null or undefined
+    if (!activeItem || !activeItem.id) {
+      console.error("activeItem is null or has no id");
+      return;
+    }
+
+    let newStatus: RegistrationStatusKeys | undefined;
     if (overContainer === "reviewRoot") {
       newStatus = RegistrationStatus.REVIEW;
     } else if (overContainer === "approvedRoot") {
@@ -158,10 +175,10 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
       newStatus = RegistrationStatus.REPROVED;
     }
 
-    // Trigger the mutation to update the registration status
     const updatedRegistration = {
       ...activeItem,
       status: newStatus,
+      id: activeItem.id,
     };
 
     updateRegistration.mutate(updatedRegistration);
@@ -170,7 +187,7 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
   };
 
   return (
-    <div style={wrapperStyle}>
+    <S.Container>
       <DndContext
         sensors={sensors}
         collisionDetection={closestCorners}
@@ -178,13 +195,24 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
         onDragOver={handleDragOver}
         onDragEnd={handleDragEnd}
       >
-        <Container id="reviewRoot" items={items.reviewRoot} />
-        <Container id="approvedRoot" items={items.approvedRoot} />
-        <Container id="reprovedRoot" items={items.reprovedRoot} />
+        {/* Ensure each Container has a unique key */}
+        <Container id="reviewRoot" key="reviewRoot" items={items.reviewRoot} />
+        <Container
+          id="approvedRoot"
+          key="approvedRoot"
+          items={items.approvedRoot}
+        />
+        <Container
+          id="reprovedRoot"
+          key="reprovedRoot"
+          items={items.reprovedRoot}
+        />
         <DragOverlay>
-          {activeItem ? <RegistrationCard registration={activeItem} /> : null}
+          {activeItem ? (
+            <RegistrationCard registration={activeItem} key={activeItem.id} />
+          ) : null}
         </DragOverlay>
       </DndContext>
-    </div>
+    </S.Container>
   );
 };
