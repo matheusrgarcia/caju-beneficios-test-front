@@ -12,7 +12,7 @@
       "admissionDate": "23/10/2023",
       "email": "carla@caju.com.br",
       "employeeName": "Carla Souza",
-      "status": "REVIEW",
+      "status": "APPROVED",
       "cpf": "15482170034",
       "id": "5"
     },
@@ -86,7 +86,7 @@
       "email": "matheus_ribeiro.g@hotmail.com",
       "cpf": "06158398519",
       "admissionDate": "1997-03-05",
-      "status": "REVIEW",
+      "status": "REPROVED",
       "id": "0833"
     }
   ]

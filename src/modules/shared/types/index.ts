@@ -1,10 +1,10 @@
-import { RegistrationStatus } from "~/modules/dashboard/constants";
+import { RegistrationStatusKeys } from "../constants";
 
 type Registration = {
   admissionDate: string; // TODO: maybe date? later change it makes sense
   email: string;
   employeeName: string;
-  status: RegistrationStatus;
+  status: RegistrationStatusKeys;
   cpf: string;
   id: string;
 };

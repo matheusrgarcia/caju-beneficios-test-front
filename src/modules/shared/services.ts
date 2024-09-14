@@ -8,6 +8,14 @@ export const getRegistrations = (): Promise<GetRegistrationsResponse> => {
     .then((r) => r.data);
 };
 
+export const getRegistrationsByCpf = (
+  cpf: string
+): Promise<GetRegistrationsResponse> => {
+  return httpClient
+    .get<GetRegistrationsResponse>(`/registrations?cpf=${cpf}`)
+    .then((r) => r.data);
+};
+
 export const createRegistration = (data: Registration): Promise<unknown> => {
   return httpClient.post(`/registrations`, data).then((r) => r.data);
 };
