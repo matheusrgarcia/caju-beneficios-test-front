@@ -16,7 +16,6 @@ type Props = {
 };
 
 const RegistrationCard: React.FC<Props> = ({ registration }) => {
-  console.log('registrataiton,', registration)
   const { employeeName, email, admissionDate, id } = registration;
 
   const deleteRegistration = useDeleteRegistrationMutation();
@@ -30,7 +29,12 @@ const RegistrationCard: React.FC<Props> = ({ registration }) => {
   return (
     <S.Card>
       <S.DeleteContainer>
-        <IconButton aria-label="delete" size="medium" onClick={handleRegistrationDeletion}>
+        <IconButton
+          aria-label="delete"
+          size="medium"
+          onClick={handleRegistrationDeletion}
+          draggable={false}
+        >
           <HiOutlineTrash />
         </IconButton>
       </S.DeleteContainer>

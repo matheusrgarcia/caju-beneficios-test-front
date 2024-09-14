@@ -18,9 +18,9 @@ type ExampleProps = {
 };
 
 type ItemsState = {
-  root: Registration[];
-  container1: Registration[];
-  container2: Registration[];
+  reviewRoot: Registration[];
+  approvedRoot: Registration[];
+  reprovedRoot: Registration[];
 };
 
 const wrapperStyle = {
@@ -30,9 +30,9 @@ const wrapperStyle = {
 
 export const Example: React.FC<ExampleProps> = ({ registrations }) => {
   const [items, setItems] = useState<ItemsState>({
-    root: [],
-    container1: [],
-    container2: [],
+    reviewRoot: [],
+    approvedRoot: [],
+    reprovedRoot: [],
   });
 
   const [activeItem, setActiveItem] = useState<Registration | null>(null);
@@ -51,14 +51,19 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
     );
 
     setItems({
-      root: inReviewItems || [],
-      container1: approvedItems || [],
-      container2: reprovedItems || [],
+      reviewRoot: inReviewItems || [],
+      approvedRoot: approvedItems || [],
+      reprovedRoot: reprovedItems || [],
     });
   }, [registrations]);
 
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, {
+      // Prevent drag on elements like buttons
+      activationConstraint: {
+        distance: 10, // Minimum movement required before the drag is activated
+      },
+    }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })
@@ -149,9 +154,9 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
         onDragOver={handleDragOver}
         onDragEnd={handleDragEnd}
       >
-        <Container id="root" items={items.root} />
-        <Container id="container1" items={items.container1} />
-        <Container id="container2" items={items.container2} />
+        <Container id="reviewRoot" items={items.reviewRoot} />
+        <Container id="approvedRoot" items={items.approvedRoot} />
+        <Container id="reprovedRoot" items={items.reprovedRoot} />
         <DragOverlay>
           {activeItem ? <RegistrationCard registration={activeItem} /> : null}
         </DragOverlay>

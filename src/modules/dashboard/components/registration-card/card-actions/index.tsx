@@ -34,6 +34,7 @@ export const RegistrationCardActions: React.FC<Props> = ({ registration }) => {
     <S.Actions>
       {isInReview && (
         <Button
+          draggable={false}
           variant="contained"
           color="secondary"
           size="medium"
@@ -45,6 +46,7 @@ export const RegistrationCardActions: React.FC<Props> = ({ registration }) => {
 
       {isReproved && (
         <Button
+          draggable={false}
           variant="contained"
           color="error"
           size="medium"
@@ -55,6 +57,7 @@ export const RegistrationCardActions: React.FC<Props> = ({ registration }) => {
       )}
       {isApproved && (
         <Button
+          draggable={false}
           variant="contained"
           color="success"
           size="medium"
