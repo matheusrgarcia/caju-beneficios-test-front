@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import {
   DndContext,
   DragOverlay,
@@ -6,8 +6,9 @@ import {
   KeyboardSensor,
   PointerSensor,
   useSensor,
-  useSensors,
-  SensorDescriptor,
+  Active,
+  Over,
+  UniqueIdentifier,
 } from "@dnd-kit/core";
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import {
@@ -22,7 +23,7 @@ import * as S from "./styles";
 import { useUpdateRegistrationMutation } from "../../mutations/use-update-registration-mutation";
 import useScreenSize from "~/modules/shared/utils/useScreenSize";
 
-type ExampleProps = {
+type RegistrationColumnsProps = {
   registrations: Registration[];
 };
 
@@ -32,7 +33,9 @@ type ItemsState = {
   reprovedRoot: Registration[];
 };
 
-export const Example: React.FC<ExampleProps> = ({ registrations }) => {
+export const RegistrationColumns: React.FC<RegistrationColumnsProps> = ({
+  registrations,
+}) => {
   const { isDesktop } = useScreenSize();
   const [items, setItems] = useState<ItemsState>({
     reviewRoot: [],
@@ -64,23 +67,19 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
     });
   }, [registrations]);
 
-  const sensors = isDesktop
-    ? [
-        useSensor(PointerSensor, { activationConstraint: { distance: 10 } }),
-        useSensor(KeyboardSensor, {
-          coordinateGetter: sortableKeyboardCoordinates,
-        }),
-      ]
-    : [
-        useSensor(PointerSensor, {
-          activationConstraint: { distance: Infinity },
-        }),
-        useSensor(KeyboardSensor, {
-          coordinateGetter: sortableKeyboardCoordinates,
-        }),
-      ];
+  const pointerSensor = useSensor(PointerSensor, {
+    activationConstraint: isDesktop ? { distance: 10 } : { distance: Infinity },
+  });
 
-  const findContainer = (id: string): keyof ItemsState | undefined => {
+  const keyboardSensor = useSensor(KeyboardSensor, {
+    coordinateGetter: sortableKeyboardCoordinates,
+  });
+
+  const sensors = [pointerSensor, keyboardSensor];
+
+  const findContainer = (
+    id: UniqueIdentifier
+  ): keyof ItemsState | undefined => {
     if (id in items) {
       return id as keyof ItemsState;
     }
@@ -89,7 +88,7 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
     );
   };
 
-  const handleDragStart = (event: any) => {
+  const handleDragStart = (event: { active: Active }): void => {
     const { active } = event;
     if (active) {
       const foundItem = registrations.find((item) => item.id === active.id);
@@ -97,7 +96,10 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
     }
   };
 
-  const handleDragOver = (event: any) => {
+  const handleDragOver = (event: {
+    active: Active;
+    over: Over | null;
+  }): void => {
     const { active, over } = event;
     if (!active || !over) return;
 
@@ -136,7 +138,10 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
     });
   };
 
-  const handleDragEnd = (event: any) => {
+  const handleDragEnd = (event: {
+    active: Active;
+    over: Over | null;
+  }): void => {
     const { active, over } = event;
     if (!active || !over) return;
 
