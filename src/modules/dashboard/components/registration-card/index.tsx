@@ -7,9 +7,9 @@ import {
 } from "react-icons/hi";
 import { IconButton } from "@mui/material";
 
-import { Registration } from "../../constants";
 import { useDeleteRegistrationMutation } from "../../mutations/use-delete-registration-mutation";
 import { RegistrationCardActions } from "./card-actions";
+import { Registration } from "~/modules/shared/constants";
 
 type Props = {
   registration: Registration;
@@ -28,11 +28,11 @@ const RegistrationCard: React.FC<Props> = ({ registration }) => {
 
   return (
     <S.Card>
-      <S.Delete>
+      <S.DeleteContainer>
         <IconButton aria-label="delete" size="medium" onClick={handleRegistrationDeletion}>
           <HiOutlineTrash />
         </IconButton>
-      </S.Delete>
+      </S.DeleteContainer>
       <S.IconAndText>
         <HiOutlineUser />
         <h3>{employeeName}</h3>

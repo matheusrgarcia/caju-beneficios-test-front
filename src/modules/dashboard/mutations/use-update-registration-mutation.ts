@@ -4,13 +4,14 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import * as service from "../../shared/services";
+
 import {
-  Registration,
+  RegistrationStatusKeys,
   REGISTRATION_MUTATION_KEYS,
   REGISTRATION_QUERY_KEYS,
-  RegistrationStatusKeys,
-} from "../constants";
+  Registration,
+} from "~/modules/shared/constants";
+import * as service from "../../shared/services";
 
 type UpdateRegistrationRequest = {
   id: string;
@@ -37,11 +38,14 @@ export const useUpdateRegistrationMutation = (): UseMutationResult<
       console.error(error);
     },
     onSuccess: (_, { id, status }) => {
-      queryClient.setQueryData([REGISTRATION_QUERY_KEYS.getRegistrations], (oldData: Registration[]) => {
-        return oldData.map((registration) =>
-          registration.id === id ? { ...registration, status } : registration
-        );
-      });
+      queryClient.setQueryData(
+        [REGISTRATION_QUERY_KEYS.getRegistrations],
+        (oldData: Registration[]) => {
+          return oldData.map((registration) =>
+            registration.id === id ? { ...registration, status } : registration
+          );
+        }
+      );
     },
   });
 

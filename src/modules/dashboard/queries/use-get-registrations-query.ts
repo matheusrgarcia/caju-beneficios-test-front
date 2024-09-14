@@ -6,9 +6,9 @@ import { GetRegistrationsResponse } from "~/modules/shared/types";
 import * as service from "../../shared/services";
 import { trackError } from "../../shared/api/utils";
 import {
-  DEFAULT_QUERY_STALE_TIME,
   REGISTRATION_QUERY_KEYS,
-} from "../constants";
+  DEFAULT_QUERY_STALE_TIME,
+} from "~/modules/shared/constants";
 
 export const useGetRegistrationsQuery = ({
   enabled,

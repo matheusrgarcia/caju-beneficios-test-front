@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { RegistrationStatus, RegistrationStatusKeys } from "../../constants";
+import { RegistrationStatusKeys, RegistrationStatus } from "~/modules/shared/constants";
 import tokens from "~/modules/shared/tokens";
 
 const registrationStatusStyles: Record<

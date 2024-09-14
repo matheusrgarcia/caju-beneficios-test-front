@@ -1,12 +1,13 @@
 import * as S from "../styles";
 
-import { useUpdateRegistrationMutation } from "../../../mutations/use-update-registration-mutation";
+import { Button } from "~/modules/shared/components/buttons/button";
 import {
   Registration,
   RegistrationStatus,
   RegistrationStatusKeys,
-} from "../../../constants";
-import { Button } from "~/modules/shared/components/buttons/button";
+} from "~/modules/shared/constants";
+
+import { useUpdateRegistrationMutation } from "../../../mutations/use-update-registration-mutation";
 
 type Props = {
   registration: Registration;

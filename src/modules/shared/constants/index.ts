@@ -1,1 +1,29 @@
-export const HEADER_HEIGHT = '48px';
+export const HEADER_HEIGHT = "48px";
+
+export const REGISTRATION_MUTATION_KEYS = {
+  create: "create-registration-mutation",
+  update: "update-registration-mutation",
+  delete: "delete-registration-mutation",
+} as const;
+
+export const REGISTRATION_QUERY_KEYS = {
+  getRegistrations: "getRegistrations",
+} as const;
+
+export const DEFAULT_QUERY_STALE_TIME = 60000;
+
+export const RegistrationStatus = {
+  REVIEW: "REVIEW",
+  APPROVED: "APPROVED",
+  REPROVED: "REPROVED",
+} as const;
+
+export type RegistrationStatusKeys = keyof typeof RegistrationStatus;
+
+export type Registration = {
+  employeeName: string;
+  admissionDate: string;
+  email: string;
+  id: string;
+  status: RegistrationStatusKeys;
+};
