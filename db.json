@@ -1,28 +1,12 @@
 {
   "registrations": [
     {
-      "admissionDate": "22/10/2023",
-      "email": "filipe@caju.com.br",
-      "employeeName": "Filipe Marins",
-      "status": "REVIEW",
-      "cpf": "78502270001",
-      "id": "1"
-    },
-    {
       "admissionDate": "23/10/2023",
       "email": "carla@caju.com.br",
       "employeeName": "Carla Souza",
-      "status": "APPROVED",
+      "status": "REPROVED",
       "cpf": "15482170034",
       "id": "5"
-    },
-    {
-      "admissionDate": "28/10/2023",
-      "email": "daniela@caju.com.br",
-      "employeeName": "Daniela Araújo",
-      "status": "REPROVED",
-      "cpf": "11122233344",
-      "id": "14"
     },
     {
       "employeeName": "Larissa Marissa",

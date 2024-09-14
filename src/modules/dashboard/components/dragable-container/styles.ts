@@ -1,0 +1,24 @@
+import styled from "styled-components";
+import { RegistrationStatusKeys } from "~/modules/shared/constants";
+import tokens from "~/modules/shared/tokens";
+import { registrationStatusStyles } from "../../constants";
+
+export const DragContainer = styled.div<{ status: RegistrationStatusKeys }>`
+  height: auto;
+  background-color: ${({ status }) =>
+    registrationStatusStyles[status as RegistrationStatusKeys]?.background};
+  border-radius: ${tokens.space.small};
+  min-height: 80dvh;
+  max-height: 80dvh;
+  padding: ${tokens.space.regular};
+
+  @media screen and (max-width: ${tokens.breakpoints.s}) {
+    min-width: 80%;
+  }
+`;
+
+export const TitleColumn = styled.h3<{ status: RegistrationStatusKeys }>`
+  margin: ${tokens.space.small};
+  color: ${({ status }) =>
+    registrationStatusStyles[status as RegistrationStatusKeys]?.title};
+`;

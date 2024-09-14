@@ -5,40 +5,51 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
+import {
+  Registration,
+  RegistrationStatusKeys,
+} from "~/modules/shared/constants";
+
 import SortableItem from "../sortable-item";
 import RegistrationCard from "../registration-card";
+import * as S from "./styles";
+import { dashboardColumnTitles } from "../../constants";
 
-const containerStyle = {
-  background: "#dadada",
-  padding: 10,
-  margin: 10,
-  flex: 1,
+type DraggableContainerProps = {
+  id: string;
+  items: Registration[];
+  status: RegistrationStatusKeys;
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export default function Container({ id, items }) {
-  const { setNodeRef } = useDroppable({
-    id,
-  });
+export const DraggableContainer: React.FC<DraggableContainerProps> = ({
+  id,
+  items,
+  status,
+}) => {
+  const { setNodeRef } = useDroppable({ id });
 
   if (!items) {
-    return <div>Loading</div>;
+    return <div>Loading...</div>;
   }
 
   return (
     <SortableContext
       id={id}
-      items={items}
+      items={items.map((item) => item.id)}
       strategy={verticalListSortingStrategy}
     >
-      <div ref={setNodeRef} style={containerStyle}>
-        {items &&
-          items?.map((item) => (
-            <SortableItem key={item} id={item.id}>
+      <S.DragContainer ref={setNodeRef} status={status}>
+        <S.TitleColumn status={status}>{dashboardColumnTitles[status]}</S.TitleColumn>
+        {items.length === 0 ? (
+          <p>Sem candidatos</p>
+        ) : (
+          items.map((item) => (
+            <SortableItem key={item.id} id={item.id}>
               <RegistrationCard registration={item} />
             </SortableItem>
-          ))}
-      </div>
+          ))
+        )}
+      </S.DragContainer>
     </SortableContext>
   );
-}
+};

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   DndContext,
   DragOverlay,
@@ -7,6 +7,7 @@ import {
   PointerSensor,
   useSensor,
   useSensors,
+  SensorDescriptor,
 } from "@dnd-kit/core";
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import {
@@ -14,11 +15,12 @@ import {
   RegistrationStatus,
   RegistrationStatusKeys,
 } from "~/modules/shared/constants";
-import Container from "../dragable-container";
+import { DraggableContainer } from "../dragable-container";
 import RegistrationCard from "../registration-card";
 
 import * as S from "./styles";
 import { useUpdateRegistrationMutation } from "../../mutations/use-update-registration-mutation";
+import useScreenSize from "~/modules/shared/utils/useScreenSize";
 
 type ExampleProps = {
   registrations: Registration[];
@@ -31,6 +33,7 @@ type ItemsState = {
 };
 
 export const Example: React.FC<ExampleProps> = ({ registrations }) => {
+  const { isDesktop } = useScreenSize();
   const [items, setItems] = useState<ItemsState>({
     reviewRoot: [],
     approvedRoot: [],
@@ -61,16 +64,21 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
     });
   }, [registrations]);
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 10,
-      },
-    }),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  );
+  const sensors = isDesktop
+    ? [
+        useSensor(PointerSensor, { activationConstraint: { distance: 10 } }),
+        useSensor(KeyboardSensor, {
+          coordinateGetter: sortableKeyboardCoordinates,
+        }),
+      ]
+    : [
+        useSensor(PointerSensor, {
+          activationConstraint: { distance: Infinity },
+        }),
+        useSensor(KeyboardSensor, {
+          coordinateGetter: sortableKeyboardCoordinates,
+        }),
+      ];
 
   const findContainer = (id: string): keyof ItemsState | undefined => {
     if (id in items) {
@@ -160,9 +168,7 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
       }));
     }
 
-    // Ensure activeItem is not null or undefined
     if (!activeItem || !activeItem.id) {
-      console.error("activeItem is null or has no id");
       return;
     }
 
@@ -195,17 +201,23 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
         onDragOver={handleDragOver}
         onDragEnd={handleDragEnd}
       >
-        {/* Ensure each Container has a unique key */}
-        <Container id="reviewRoot" key="reviewRoot" items={items.reviewRoot} />
-        <Container
+        <DraggableContainer
+          id="reviewRoot"
+          key="reviewRoot"
+          items={items.reviewRoot}
+          status={RegistrationStatus.REVIEW}
+        />
+        <DraggableContainer
           id="approvedRoot"
           key="approvedRoot"
           items={items.approvedRoot}
+          status={RegistrationStatus.APPROVED}
         />
-        <Container
+        <DraggableContainer
           id="reprovedRoot"
           key="reprovedRoot"
           items={items.reprovedRoot}
+          status={RegistrationStatus.REPROVED}
         />
         <DragOverlay>
           {activeItem ? (
