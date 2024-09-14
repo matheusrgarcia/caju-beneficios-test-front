@@ -9,9 +9,10 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
-import { Registration, RegistrationStatus } from "~/modules/shared/constants";
+import { Registration, RegistrationStatus, RegistrationStatusKeys } from "~/modules/shared/constants";
 import Container from "../dragable-container";
 import RegistrationCard from "../registration-card";
+import { useUpdateRegistrationMutation } from "../../mutations/use-update-registration-mutation";
 
 type ExampleProps = {
   registrations: Registration[];
@@ -37,6 +38,8 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
 
   const [activeItem, setActiveItem] = useState<Registration | null>(null);
 
+  const updateRegistration = useUpdateRegistrationMutation(); // Initialize the mutation
+
   useEffect(() => {
     const inReviewItems = registrations?.filter(
       (registration) => registration.status === RegistrationStatus.REVIEW
@@ -59,9 +62,8 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
-      // Prevent drag on elements like buttons
       activationConstraint: {
-        distance: 10, // Minimum movement required before the drag is activated
+        distance: 10,
       },
     }),
     useSensor(KeyboardSensor, {
@@ -69,7 +71,11 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
     })
   );
 
+  // Modify findContainer to check both the items and the container ID directly
   const findContainer = (id: string): keyof ItemsState | undefined => {
+    if (id in items) {
+      return id as keyof ItemsState;
+    }
     return (Object.keys(items) as Array<keyof ItemsState>).find((key) =>
       items[key].some((item) => item.id === id)
     );
@@ -141,6 +147,24 @@ export const Example: React.FC<ExampleProps> = ({ registrations }) => {
         [overContainer]: arrayMove(prev[overContainer], activeIndex, overIndex),
       }));
     }
+
+    // Update the registration status based on the new container
+    let newStatus: RegistrationStatusKeys;
+    if (overContainer === "reviewRoot") {
+      newStatus = RegistrationStatus.REVIEW;
+    } else if (overContainer === "approvedRoot") {
+      newStatus = RegistrationStatus.APPROVED;
+    } else if (overContainer === "reprovedRoot") {
+      newStatus = RegistrationStatus.REPROVED;
+    }
+
+    // Trigger the mutation to update the registration status
+    const updatedRegistration = {
+      ...activeItem,
+      status: newStatus,
+    };
+
+    updateRegistration.mutate(updatedRegistration);
 
     setActiveItem(null);
   };
