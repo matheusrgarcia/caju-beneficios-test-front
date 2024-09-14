@@ -16,6 +16,7 @@ type Props = {
 };
 
 const RegistrationCard: React.FC<Props> = ({ registration }) => {
+  console.log('registrataiton,', registration)
   const { employeeName, email, admissionDate, id } = registration;
 
   const deleteRegistration = useDeleteRegistrationMutation();

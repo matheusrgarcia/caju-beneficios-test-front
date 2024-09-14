@@ -17,60 +17,12 @@
       "id": "5"
     },
     {
-      "id": "14",
       "admissionDate": "28/10/2023",
       "email": "daniela@caju.com.br",
       "employeeName": "Daniela Araújo",
       "status": "REPROVED",
-      "cpf": "11122233344"
-    },
-    {
-      "admissionDate": "31/10/2023",
-      "email": "renata@caju.com.br",
-      "employeeName": "Renata Teixeira",
-      "status": "REPROVED",
-      "cpf": "33322211144",
-      "id": "20"
-    },
-    {
-      "admissionDate": "01/11/2023",
-      "email": "joao@caju.com.br",
-      "employeeName": "João Paulo Santos de Souza",
-      "status": "APPROVED",
-      "cpf": "99900088811",
-      "id": "22"
-    },
-    {
-      "id": "23",
-      "admissionDate": "02/11/2023",
-      "email": "valeria@caju.com.br",
-      "employeeName": "Valéria Aparecida Rodrigues Figueira",
-      "status": "REPROVED",
-      "cpf": "44433322255"
-    },
-    {
-      "admissionDate": "02/11/2023",
-      "email": "diego@caju.com.br",
-      "employeeName": "Diego Henrique Batista Moreira",
-      "status": "REVIEW",
-      "cpf": "88877766644",
-      "id": "24"
-    },
-    {
-      "id": "0192",
-      "employeeName": "Larissa Marissa",
-      "email": "matheus_ribeiro.g@hotmail.com",
-      "cpf": "061.583.985-19",
-      "admissionDate": "1998-10-06",
-      "status": "APPROVED"
-    },
-    {
-      "id": "9a43",
-      "employeeName": "Teste bruno",
-      "email": "bruno@gmail.com",
-      "cpf": "1234567891",
-      "admissionDate": "1997-12-12",
-      "status": "REVIEW"
+      "cpf": "11122233344",
+      "id": "14"
     }
   ]
 }
