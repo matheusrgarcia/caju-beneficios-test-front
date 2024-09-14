@@ -5,7 +5,7 @@ import {
   HiOutlineCalendar,
   HiOutlineTrash,
 } from "react-icons/hi";
-import { IconButton } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 
 import { useDeleteRegistrationMutation } from "../../mutations/use-delete-registration-mutation";
 import { RegistrationCardActions } from "./card-actions";
@@ -29,14 +29,16 @@ const RegistrationCard: React.FC<Props> = ({ registration }) => {
   return (
     <S.Card>
       <S.DeleteContainer>
-        <IconButton
-          aria-label="delete"
-          size="medium"
-          onClick={handleRegistrationDeletion}
-          draggable={false}
-        >
-          <HiOutlineTrash />
-        </IconButton>
+        <Tooltip title="Excluir registro">
+          <IconButton
+            aria-label="Excluir registro"
+            size="medium"
+            onClick={handleRegistrationDeletion}
+            draggable={false}
+          >
+            <HiOutlineTrash />
+          </IconButton>
+        </Tooltip>
       </S.DeleteContainer>
       <S.IconAndText>
         <HiOutlineUser />

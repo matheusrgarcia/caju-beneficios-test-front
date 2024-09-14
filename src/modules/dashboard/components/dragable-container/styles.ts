@@ -13,7 +13,8 @@ export const DragContainer = styled.div<{ status: RegistrationStatusKeys }>`
   padding: ${tokens.space.regular};
 
   @media screen and (max-width: ${tokens.breakpoints.s}) {
-    min-width: 80%;
+    min-width: 90%;
+    padding: ${tokens.space.smaller};
   }
 `;
 

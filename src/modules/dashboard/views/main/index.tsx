@@ -5,7 +5,7 @@ import { GetRegistrationsResponse } from "~/modules/shared/types";
 import { Container } from "~/modules/shared/components/container";
 
 import { SearchBar } from "../../components/search-bar";
-import { RegistrationColumns } from "../../components/example";
+import { RegistrationColumns } from "../../components/registration-columns";
 
 const DashboardPage: React.FC = () => {
   const { data: registrations } = useGetRegistrationsQuery();

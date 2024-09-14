@@ -1,15 +1,19 @@
+import { useEffect, useRef } from "react";
 import { HiRefresh } from "react-icons/hi";
 import { FaPlus } from "react-icons/fa6";
 import { useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { debounce } from "lodash";
+import { IconButton, Tooltip } from "@mui/material";
+
+import { Button } from "~/modules/shared/components/buttons/button";
+import useScreenSize from "~/modules/shared/utils/useScreenSize";
 import routes from "~/router/routes";
-import * as S from "./styles";
+
 import { useGetRegistrationsQuery } from "../../queries/use-get-registrations-query";
 import { useGetRegistrationByCpfMutation } from "../../mutations/use-get-registration-by-cpf-mutation";
-import { IconButton } from "@mui/material";
-import { Button } from "~/modules/shared/components/buttons/button";
-import { useEffect, useRef } from "react";
+
+import * as S from "./styles";
 
 type SearchBarProps = {
   // eslint-disable-next-line no-unused-vars
@@ -20,6 +24,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
   const history = useHistory();
   const { refetch } = useGetRegistrationsQuery();
   const { mutate: getRegistrationsByCpf } = useGetRegistrationByCpfMutation();
+  const { isMobile } = useScreenSize();
 
   const { control, watch, setValue } = useForm({
     defaultValues: { cpf: "" },
@@ -27,7 +32,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
 
   const cpfValue = watch("cpf");
 
-  // Debounce function setup
   const debouncedSearch = useRef(
     debounce((cpf: string) => {
       const cleanedCpf = cleanCpf(cpf);
@@ -43,17 +47,15 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
     const cleanedCpf = cleanCpf(cpfValue);
 
     if (!cleanedCpf) {
-      // If the input is cleared, refetch immediately to get the initial state
       refetch();
     } else {
-      // Trigger debounced search when CPF has a valid value
       debouncedSearch(cpfValue);
     }
   }, [cpfValue, debouncedSearch, refetch]);
 
   const handleRefetch = (): void => {
     setValue("cpf", "");
-    refetch(); // Reset to the initial state when clicking the refresh button
+    refetch();
   };
 
   const goToNewAdmissionPage = (): void => {
@@ -83,17 +85,33 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
         )}
       />
       <S.Actions>
-        <IconButton aria-label="refetch" onClick={handleRefetch}>
-          <HiRefresh />
-        </IconButton>
-        <Button
-          variant="outlined"
-          color="success"
-          onClick={goToNewAdmissionPage}
-          endIcon={<FaPlus />}
-        >
-          Nova Admissão
-        </Button>
+        <Tooltip title="Recarregar registros">
+          <IconButton aria-label="Recarregar registros" onClick={handleRefetch}>
+            <HiRefresh />
+          </IconButton>
+        </Tooltip>
+
+        {isMobile ? (
+          <Tooltip title="Adicionar nova admissão">
+            <IconButton
+              color="success"
+              onClick={goToNewAdmissionPage}
+              aria-label="Adicionar nova admissão"
+            >
+              <FaPlus />
+            </IconButton>
+          </Tooltip>
+        ) : (
+          <Button
+            variant="outlined"
+            color="success"
+            onClick={goToNewAdmissionPage}
+            endIcon={<FaPlus />}
+            aria-label="Nova Admissão"
+          >
+            Nova Admissão
+          </Button>
+        )}
       </S.Actions>
     </S.SearchBarContainer>
   );
