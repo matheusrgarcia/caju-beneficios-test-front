@@ -4,6 +4,8 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { useHistory } from "react-router-dom";
+
 import * as service from "../../shared/services";
 import {
   Registration,
@@ -11,6 +13,7 @@ import {
   REGISTRATION_QUERY_KEYS,
   RegistrationStatus,
 } from "~/modules/shared/constants";
+import routes from "~/router/routes";
 
 export const useCreateRegistrationMutation = (): UseMutationResult<
   unknown,
@@ -19,10 +22,11 @@ export const useCreateRegistrationMutation = (): UseMutationResult<
   unknown
 > => {
   const queryClient = useQueryClient();
+  const history = useHistory();
 
   const createRegistration = useMutation({
     mutationKey: [REGISTRATION_MUTATION_KEYS.update],
-    mutationFn: async ({ ...payload }: Registration) => {
+    mutationFn: async (payload: Registration) => {
       return service.createRegistration({
         ...payload,
         status: RegistrationStatus.REVIEW,
@@ -31,13 +35,16 @@ export const useCreateRegistrationMutation = (): UseMutationResult<
     onError: (error: AxiosError<string | number | Record<string, string>>) => {
       console.error(error);
     },
-    onSuccess: (_, registration) => {
-      queryClient.setQueryData(
+    onSuccess: (newRegistration) => {
+      queryClient.setQueryData<Registration[] | undefined>(
         [REGISTRATION_QUERY_KEYS.getRegistrations],
-        (oldData: Registration[]) => {
-          return oldData.push(registration);
+        (oldData) => {
+          return oldData
+            ? [...oldData, newRegistration as Registration]
+            : [newRegistration as Registration];
         }
       );
+      history.push(routes.dashboard);
     },
   });
 

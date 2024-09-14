@@ -8,6 +8,7 @@ export const REGISTRATION_MUTATION_KEYS = {
 
 export const REGISTRATION_QUERY_KEYS = {
   getRegistrations: "getRegistrations",
+  getRegistrationsByCpf: "getRegistrationsByCpf",
 } as const;
 
 export const DEFAULT_QUERY_STALE_TIME = 60000;

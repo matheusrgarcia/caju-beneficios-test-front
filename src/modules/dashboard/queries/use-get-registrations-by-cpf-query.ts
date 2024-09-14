@@ -20,7 +20,7 @@ export const useGetRegistrationsByCpfQuery = (
   const queryClient = useQueryClient();
 
   const getRegistrationsByCpf = useQuery<GetRegistrationsResponse, Error>({
-    queryKey: [REGISTRATION_QUERY_KEYS.getRegistrations, cpf],
+    queryKey: [REGISTRATION_QUERY_KEYS.getRegistrationsByCpf, cpf],
     queryFn: () => service.getRegistrationsByCpf(cpf),
     staleTime: DEFAULT_QUERY_STALE_TIME,
     enabled: enabled && !!cpf,

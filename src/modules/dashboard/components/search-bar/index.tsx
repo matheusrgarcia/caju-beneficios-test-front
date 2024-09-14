@@ -7,7 +7,6 @@ import routes from "~/router/routes";
 import * as S from "./styles";
 import { useGetRegistrationsQuery } from "../../queries/use-get-registrations-query";
 import { useGetRegistrationsByCpfQuery } from "../../queries/use-get-registrations-by-cpf-query";
-
 import { IconButton } from "@mui/material";
 import { Button } from "~/modules/shared/components/buttons/button";
 import { useEffect, useState, useRef } from "react";
@@ -15,7 +14,7 @@ import { useEffect, useState, useRef } from "react";
 type SearchBarProps = {
   // eslint-disable-next-line no-unused-vars
   onChange?: (value: string) => void;
-}
+};
 
 export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
   const history = useHistory();
@@ -23,21 +22,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
 
   const { refetch } = useGetRegistrationsQuery();
 
-  const cleanCpf = (value: string): string => {
-    return value.replace(/\D/g, "");
-  };
+  const cleanCpf = (value: string): string => value.replace(/\D/g, "");
 
-  useEffect(() => {
-    if (!debouncedCpf) {
-      refetch();
-    }
-  }, [debouncedCpf, refetch]);
-
-  useGetRegistrationsByCpfQuery(cleanCpf(debouncedCpf), {
-    enabled: !!debouncedCpf,
-  });
-
-  const { control, watch } = useForm({
+  const { control, watch, setValue } = useForm({
     defaultValues: {
       cpf: "",
     },
@@ -57,6 +44,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
     }
   };
 
+  const handleRefetch = (): void => {
+    setValue("cpf", "");
+    setDebouncedCpf("");
+    refetch();
+  };
+
   const goToNewAdmissionPage = (): void => {
     history.push(routes.newUser);
   };
@@ -64,6 +57,16 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
   useEffect(() => {
     debouncedSetCpfRef.current(cpfValue);
   }, [cpfValue]);
+
+  useEffect(() => {
+    if (!debouncedCpf) {
+      refetch();
+    }
+  }, [debouncedCpf, refetch]);
+
+  useGetRegistrationsByCpfQuery(cleanCpf(debouncedCpf), {
+    enabled: !!debouncedCpf,
+  });
 
   return (
     <S.SearchBarContainer>
@@ -84,7 +87,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
         )}
       />
       <S.Actions>
-        <IconButton aria-label="refetch" onClick={() => refetch()}>
+        <IconButton aria-label="refetch" onClick={handleRefetch}>
           <HiRefresh />
         </IconButton>
         <Button
