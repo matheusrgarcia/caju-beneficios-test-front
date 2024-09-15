@@ -17,7 +17,7 @@ import {
   RegistrationStatusKeys,
 } from "~/modules/shared/constants";
 import { DraggableContainer } from "../dragable-container";
-import RegistrationCard from "../registration-card";
+import { RegistrationCard } from "../registration-card";
 
 import * as S from "./styles";
 import { useUpdateRegistrationMutation } from "../../mutations/use-update-registration-mutation";

@@ -15,7 +15,7 @@ type Props = {
   registration: Registration;
 };
 
-const RegistrationCard: React.FC<Props> = ({ registration }) => {
+export const RegistrationCard: React.FC<Props> = ({ registration }) => {
   const { employeeName, email, admissionDate, id } = registration;
 
   const deleteRegistration = useDeleteRegistrationMutation();
@@ -56,5 +56,3 @@ const RegistrationCard: React.FC<Props> = ({ registration }) => {
     </S.Card>
   );
 };
-
-export default RegistrationCard;

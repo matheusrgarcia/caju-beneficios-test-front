@@ -10,10 +10,11 @@ import {
   RegistrationStatusKeys,
 } from "~/modules/shared/constants";
 
-import SortableItem from "../sortable-item";
-import RegistrationCard from "../registration-card";
-import * as S from "./styles";
+import { SortableItem } from "../sortable-item";
+import { RegistrationCard } from "../registration-card";
 import { dashboardColumnTitles } from "../../constants";
+
+import * as S from "./styles";
 
 type DraggableContainerProps = {
   id: string;
@@ -39,7 +40,9 @@ export const DraggableContainer: React.FC<DraggableContainerProps> = ({
       strategy={verticalListSortingStrategy}
     >
       <S.DragContainer ref={setNodeRef} status={status}>
-        <S.TitleColumn status={status}>{dashboardColumnTitles[status]}</S.TitleColumn>
+        <S.TitleColumn status={status}>
+          {dashboardColumnTitles[status]}
+        </S.TitleColumn>
         {items.length === 0 ? (
           <p>Sem candidatos</p>
         ) : (

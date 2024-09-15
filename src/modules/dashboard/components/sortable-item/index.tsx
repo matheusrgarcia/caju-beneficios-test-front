@@ -1,20 +1,24 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export default function SortableItem(props) {
+interface SortableItemProps {
+  id: string;
+  children: ReactNode;
+}
+
+export const SortableItem: React.FC<SortableItemProps> = ({ id, children }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: props.id });
+    useSortable({ id });
 
   const style = {
-    transform: CSS.Transform.toString(transform),
+    transform: transform ? CSS.Transform.toString(transform) : undefined,
     transition,
   };
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <div id={props.id}>{props.children}</div>
+      <div id={id}>{children}</div>
     </div>
   );
-}
+};
