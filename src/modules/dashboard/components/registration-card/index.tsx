@@ -9,7 +9,7 @@ import { IconButton, Tooltip } from "@mui/material";
 
 import { useDeleteRegistrationMutation } from "../../mutations/use-delete-registration-mutation";
 import { RegistrationCardActions } from "./card-actions";
-import { Registration } from "~/modules/shared/constants";
+import { Registration } from "~/modules/shared/types";
 
 type Props = {
   registration: Registration;

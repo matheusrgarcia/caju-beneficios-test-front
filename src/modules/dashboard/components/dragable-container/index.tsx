@@ -5,10 +5,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
-import {
-  Registration,
-  RegistrationStatusKeys,
-} from "~/modules/shared/constants";
+import { Registration, RegistrationStatusKeys } from "~/modules/shared/types";
 
 import { SortableItem } from "../sortable-item";
 import { RegistrationCard } from "../registration-card";

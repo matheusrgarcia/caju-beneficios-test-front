@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-import { Header } from "./modules/shared/components/header";
+import { Header } from "./modules/shared/components";
 
 const App: React.FC = () => {
   const queryClient = new QueryClient();

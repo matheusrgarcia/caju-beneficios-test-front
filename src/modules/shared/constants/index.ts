@@ -19,12 +19,3 @@ export const RegistrationStatus = {
   REPROVED: "REPROVED",
 } as const;
 
-export type RegistrationStatusKeys = keyof typeof RegistrationStatus;
-
-export type Registration = {
-  employeeName: string;
-  admissionDate: string;
-  email: string;
-  id: string;
-  status: RegistrationStatusKeys;
-};

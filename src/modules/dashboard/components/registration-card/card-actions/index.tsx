@@ -1,11 +1,8 @@
 import * as S from "../styles";
 
-import { Button } from "~/modules/shared/components/buttons/button";
-import {
-  Registration,
-  RegistrationStatus,
-  RegistrationStatusKeys,
-} from "~/modules/shared/constants";
+import { Button } from "~/modules/shared/components";
+import { RegistrationStatus } from "~/modules/shared/constants";
+import { Registration, RegistrationStatusKeys } from "~/modules/shared/types";
 
 import { useUpdateRegistrationMutation } from "../../../mutations/use-update-registration-mutation";
 

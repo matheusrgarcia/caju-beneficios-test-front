@@ -8,10 +8,10 @@ import { AxiosError } from "axios";
 import * as service from "../../shared/services";
 
 import {
-  Registration,
   REGISTRATION_MUTATION_KEYS,
   REGISTRATION_QUERY_KEYS,
 } from "~/modules/shared/constants";
+import { Registration } from "~/modules/shared/types";
 
 type UpdateRegistrationRequest = {
   id: string;

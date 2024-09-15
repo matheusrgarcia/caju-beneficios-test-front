@@ -1,16 +1,19 @@
+import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import * as React from "react";
-import routes from "~/router/routes";
-import * as S from "./styles";
-import { IconButton } from "~/modules/shared/components/buttons/icon-button";
-import { TextField } from "~/modules/shared/components/text-field";
-import { Button } from "~/modules/shared/components/buttons/button";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
+import routes from "~/router/routes";
+
+import { TextField, Button } from "~/modules/shared/components";
+
+import { Registration, RegistrationStatusKeys } from "~/modules/shared/types";
+
 import { useCreateRegistrationMutation } from "../../mutations/use-create-registration-mutation";
-import { Registration, RegistrationStatusKeys } from "~/modules/shared/constants";
+
+import * as S from "./styles";
+import { IconButton } from "@mui/material";
 
 type FormValues = Registration & {
   cpf: string;
@@ -37,7 +40,7 @@ export const NewRegistrationForm: React.FC = () => {
   };
 
   const onSubmit: SubmitHandler<FormValues> = (data: Registration) => {
-    console.log(data)
+    console.log(data);
     createRegistration.mutate(data);
   };
 

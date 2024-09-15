@@ -6,11 +6,11 @@ import {
 import { AxiosError } from "axios";
 
 import {
-  RegistrationStatusKeys,
   REGISTRATION_MUTATION_KEYS,
   REGISTRATION_QUERY_KEYS,
-  Registration,
 } from "~/modules/shared/constants";
+import { RegistrationStatusKeys, Registration } from "~/modules/shared/types";
+
 import * as service from "../../shared/services";
 
 type UpdateRegistrationRequest = {

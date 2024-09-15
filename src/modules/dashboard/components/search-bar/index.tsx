@@ -6,7 +6,7 @@ import { useForm, Controller } from "react-hook-form";
 import { debounce } from "lodash";
 import { IconButton, Tooltip } from "@mui/material";
 
-import { Button } from "~/modules/shared/components/buttons/button";
+import { Button } from "~/modules/shared/components";
 import useScreenSize from "~/modules/shared/utils/useScreenSize";
 import routes from "~/router/routes";
 

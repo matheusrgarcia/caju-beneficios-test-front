@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import { RegistrationStatusKeys } from "~/modules/shared/constants";
+
+import { RegistrationStatusKeys } from "~/modules/shared/types";
 import tokens from "~/modules/shared/tokens";
+
 import { registrationStatusStyles } from "../../constants";
 
 export const DragContainer = styled.div<{ status: RegistrationStatusKeys }>`
