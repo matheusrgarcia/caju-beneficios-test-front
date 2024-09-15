@@ -22,7 +22,7 @@ type SearchBarProps = {
 
 export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
   const history = useHistory();
-  const { refetch } = useGetRegistrationsQuery();
+  const { refetch: reloadQuery } = useGetRegistrationsQuery();
   const { mutate: getRegistrationsByCpf } = useGetRegistrationByCpfMutation();
   const { isMobile } = useScreenSize();
 
@@ -41,21 +41,21 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
     }, 500)
   ).current;
 
-  const cleanCpf = (value: string): string => value.replace(/\D/g, "");
+  const cleanCpf = (value: string): string => value?.replace(/\D/g, "");
 
   useEffect(() => {
     const cleanedCpf = cleanCpf(cpfValue);
 
     if (!cleanedCpf) {
-      refetch();
+      reloadQuery();
     } else {
       debouncedSearch(cpfValue);
     }
-  }, [cpfValue, debouncedSearch, refetch]);
+  }, [cpfValue, debouncedSearch, reloadQuery]);
 
   const handleRefetch = (): void => {
     setValue("cpf", "");
-    refetch();
+    reloadQuery();
   };
 
   const goToNewAdmissionPage = (): void => {
