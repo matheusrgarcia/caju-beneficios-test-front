@@ -15,8 +15,8 @@ vi.mock("./mutations/use-get-registration-by-cpf-mutation", () => ({
 }));
 
 describe("DashboardPage Component", () => {
-  mockedHistory.location.pathname = "/";
   beforeEach(() => {
+    mockedHistory.location.pathname = "/";
     (useGetRegistrationsQuery as Mock).mockReturnValue({
       refetch: vi.fn(),
     });
@@ -26,57 +26,57 @@ describe("DashboardPage Component", () => {
     });
   });
 
-  it("should render CPF input", () => {
-    render(<DashboardPage />, { wrapper: TestingWrapper });
+  describe("Search Bar Component", () => {
+    it("should render CPF input", () => {
+      render(<DashboardPage />, { wrapper: TestingWrapper });
 
-    expect(
-      screen.getByPlaceholderText("Digite um CPF válido")
-    ).toBeInTheDocument();
-  });
-
-  it("should call getRegistrationsByCpf after debounce when CPF is entered", async () => {
-    const mockMutate = vi.fn();
-    (useGetRegistrationByCpfMutation as Mock).mockReturnValue({
-      mutate: mockMutate,
+      expect(
+        screen.getByPlaceholderText("Digite um CPF válido")
+      ).toBeInTheDocument();
     });
 
-    render(<DashboardPage />, { wrapper: TestingWrapper });
+    it("should call getRegistrationsByCpf after debounce when CPF is entered", async () => {
+      const mockMutate = vi.fn();
+      (useGetRegistrationByCpfMutation as Mock).mockReturnValue({
+        mutate: mockMutate,
+      });
 
-    const cpfInput = screen.getByPlaceholderText("Digite um CPF válido");
+      render(<DashboardPage />, { wrapper: TestingWrapper });
 
-    userEvent.type(cpfInput, "123.456.789-00");
+      const cpfInput = screen.getByPlaceholderText("Digite um CPF válido");
 
-    await waitFor(() => {
-      expect(mockMutate).toHaveBeenCalledWith({ cpf: "12345678900" });
+      userEvent.type(cpfInput, "123.456.789-00");
+
+      await waitFor(() => {
+        expect(mockMutate).toHaveBeenCalledWith({ cpf: "12345678900" });
+      });
     });
-  });
 
-  it("should clear the CPF and refetch registrations when refresh button is clicked", async () => {
-    const mockRefetch = vi.fn();
-    (useGetRegistrationsQuery as Mock).mockReturnValue({
-      refetch: mockRefetch,
+    it("should clear the CPF and refetch registrations when refresh button is clicked", async () => {
+      const mockRefetch = vi.fn();
+      (useGetRegistrationsQuery as Mock).mockReturnValue({
+        refetch: mockRefetch,
+      });
+
+      render(<DashboardPage />, { wrapper: TestingWrapper });
+
+      const refreshButton = screen.getByLabelText("Recarregar registros");
+      fireEvent.click(refreshButton);
+
+      expect(mockRefetch).toHaveBeenCalled();
     });
 
-    render(<DashboardPage />, { wrapper: TestingWrapper });
+    it("should navigate to the new admission page when 'Nova Admissão' button is clicked", async () => {
+      render(<DashboardPage />, { wrapper: TestingWrapper });
 
-    const refreshButton = screen.getByLabelText("Recarregar registros");
-    fireEvent.click(refreshButton);
+      const newAdmissionButton = screen.getByLabelText("Nova Admissão");
+      expect(newAdmissionButton).toBeInTheDocument();
 
-    expect(mockRefetch).toHaveBeenCalled();
-  });
+      await userEvent.click(newAdmissionButton);
 
-  it("should navigate to the new admission page when 'Nova Admissão' button is clicked", async () => {
-    render(<DashboardPage />, { wrapper: TestingWrapper });
-
-    const newAdmissionButton = screen.getByLabelText("Nova Admissão");
-    expect(newAdmissionButton).toBeInTheDocument();
-
-    // Use userEvent para simular o clique no botão
-    await userEvent.click(newAdmissionButton);
-
-    // Use waitFor para esperar que o pathname seja atualizado
-    await waitFor(() => {
-      expect(mockedHistory.location.pathname).toBe("/new-user");
+      await waitFor(() => {
+        expect(mockedHistory.location.pathname).toBe("/new-user");
+      });
     });
   });
 });
