@@ -4,6 +4,9 @@ import tokens from "~/modules/shared/tokens";
 import { registrationStatusStyles } from "../../constants";
 
 export const DragContainer = styled.div<{ status: RegistrationStatusKeys }>`
+  display: flex;
+  flex-direction: column;
+  gap: ${tokens.space.small};
   height: auto;
   background-color: ${({ status }) =>
     registrationStatusStyles[status as RegistrationStatusKeys]?.background};
