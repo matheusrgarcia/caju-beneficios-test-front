@@ -1,10 +1,9 @@
-import * as S from "../styles";
-
-import { Button } from "~/modules/shared/components";
 import { RegistrationStatus } from "~/modules/shared/constants";
 import { Registration, RegistrationStatusKeys } from "~/modules/shared/types";
 
 import { useUpdateRegistrationMutation } from "../../../mutations/use-update-registration-mutation";
+
+import * as S from "./styles";
 
 type Props = {
   registration: Registration;
@@ -23,45 +22,43 @@ export const RegistrationCardActions: React.FC<Props> = ({ registration }) => {
     });
   };
 
-  const isInReview = status !== RegistrationStatus.REVIEW;
-  const isReproved = status !== RegistrationStatus.REPROVED;
-  const isApproved = status !== RegistrationStatus.APPROVED;
+  const isInReview = status === RegistrationStatus.REVIEW;
 
   return (
     <S.Actions>
-      {isInReview && (
-        <Button
+      {!isInReview && (
+        <S.CustomButton
           draggable={false}
           variant="contained"
           color="secondary"
-          size="medium"
+          size="small"
           onClick={() => handleAction(RegistrationStatus.REVIEW)}
         >
           Revisar novamente
-        </Button>
+        </S.CustomButton>
       )}
 
-      {isReproved && (
-        <Button
+      {isInReview && (
+        <S.CustomButton
           draggable={false}
           variant="contained"
           color="error"
-          size="medium"
+          size="small"
           onClick={() => handleAction(RegistrationStatus.REPROVED)}
         >
           Reprovar
-        </Button>
+        </S.CustomButton>
       )}
-      {isApproved && (
-        <Button
+      {isInReview && (
+        <S.CustomButton
           draggable={false}
           variant="contained"
           color="success"
-          size="medium"
+          size="small"
           onClick={() => handleAction(RegistrationStatus.APPROVED)}
         >
           Aprovar
-        </Button>
+        </S.CustomButton>
       )}
     </S.Actions>
   );

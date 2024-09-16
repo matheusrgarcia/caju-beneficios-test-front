@@ -1,9 +1,12 @@
-import { RegistrationStatus, RegistrationStatusKeys } from "~/modules/shared/constants";
-import { GetRegistrationsResponse } from "~/modules/shared/types";
+import { RegistrationStatus } from "~/modules/shared/constants";
 
-// TODO: Change type?
+import {
+  GetRegistrationsResponse,
+  RegistrationStatusKeys,
+} from "~/modules/shared/types";
+
 export type DashboardColumns = {
-  registrations: GetRegistrationsResponse; // TODO: Should change this
+  registrations: GetRegistrationsResponse;
 };
 
 export const dashboardColumnItems = [

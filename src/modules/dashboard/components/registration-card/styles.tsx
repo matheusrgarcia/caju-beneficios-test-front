@@ -34,20 +34,4 @@ export const IconAndText = styled.div`
   gap: 8px;
 `;
 
-export const Actions = styled.div`
-  margin-top: ${tokens.space.regular};
-  display: flex;
-  /* grid-template-columns: 1fr 1fr 2fr; */
-  align-items: center;
-  gap: 4px;
 
-  & > * {
-    flex: 1;
-    height: 52px;
-    min-width: 0;
-  }
-
-  @media screen and (max-width: ${tokens.breakpoints.s}) {
-    grid-template-columns: 1fr;
-  }
-`;

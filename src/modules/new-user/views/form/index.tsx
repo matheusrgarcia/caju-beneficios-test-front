@@ -40,7 +40,6 @@ export const NewRegistrationForm: React.FC = () => {
   };
 
   const onSubmit: SubmitHandler<FormValues> = (data: Registration) => {
-    console.log(data);
     createRegistration.mutate(data);
   };
 
