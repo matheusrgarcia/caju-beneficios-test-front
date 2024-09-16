@@ -4,113 +4,25 @@
       "admissionDate": "22/10/2023",
       "email": "luiz@caju.com.br",
       "employeeName": "Luiz Filho",
-      "status": "APROVED",
+      "status": "APPROVED",
       "cpf": "56642105087",
       "id": "3"
     },
     {
+      "id": "1",
       "admissionDate": "22/10/2023",
       "email": "filipe@caju.com.br",
       "employeeName": "Filipe Marins",
-      "status": "REPROVED",
-      "cpf": "78502270001",
-      "id": "1"
+      "status": "REVIEW",
+      "cpf": "78502270001"
     },
     {
+      "id": "2",
       "admissionDate": "22/10/2023",
       "email": "jose@caju.com.br",
       "employeeName": "José Leão",
-      "status": "APPROVED",
-      "cpf": "78502270001",
-      "id": "2"
-    },
-    {
-      "employeeName": "Teste data",
-      "email": "arthas@gmail.com",
-      "cpf": "06158398519",
-      "admissionDate": "03/06/6111",
-      "status": "APPROVED",
-      "id": "ff19"
-    },
-    {
-      "employeeName": "Larissa Marissa",
-      "email": "matheus_ribeiro.g@hotmail.com",
-      "cpf": "061.583.985-19",
-      "admissionDate": "03/09/1961",
-      "status": "REVIEW",
-      "id": "c311"
-    },
-    {
-      "id": "8e28",
-      "employeeName": "TESTE AGORA",
-      "email": "matheus.garcia@ifood.com.br",
-      "cpf": "123.123.123-12",
-      "admissionDate": "03/09/1961",
-      "status": "REVIEW"
-    },
-    {
-      "id": "b7a9",
-      "employeeName": "Larissa Marissa",
-      "email": "matheus_ribeiro.g@hotmail.com",
-      "cpf": "061.583.985-19",
-      "admissionDate": "13/03/1111",
-      "status": "REVIEW"
-    },
-    {
-      "id": "2e7b",
-      "employeeName": "1212",
-      "email": "123121@312331.com",
-      "cpf": "061.583.985-19",
-      "admissionDate": "03/09/1997",
-      "status": "REVIEW"
-    },
-    {
-      "id": "eb43",
-      "employeeName": "MATTTTTTTTTTT",
-      "email": "matheus_ribeiro.g@hotmail.com",
-      "cpf": "061.583.985-19",
-      "admissionDate": "18/05/1997",
-      "status": "REVIEW"
-    },
-    {
-      "id": "9210",
-      "employeeName": "Matheus Ribeiro Garcia",
-      "email": "matheus_ribeiro.g@hotmail.com",
-      "cpf": "061.583.985-19",
-      "admissionDate": "18/05/1997",
-      "status": "REVIEW"
-    },
-    {
-      "employeeName": "teste de siste",
-      "email": "sistem@gmail.com",
-      "cpf": "061.583.985-19",
-      "admissionDate": "13/09/1961",
-      "status": "REVIEW",
-      "id": "55fe"
-    },
-    {
-      "id": "a4aa",
-      "employeeName": "dsas",
-      "email": "adasd@gmail.com",
-      "cpf": "061.583.985-19",
-      "admissionDate": "13/09/1961",
-      "status": "REVIEW"
-    },
-    {
-      "employeeName": "Matheus",
-      "email": "matheus_ribeiro.g@hotmail.com",
-      "cpf": "061.583.985-19",
-      "admissionDate": "18/05/1997",
       "status": "REPROVED",
-      "id": "cd11"
-    },
-    {
-      "id": "6070",
-      "employeeName": "MAAAAAAAAAAATHEUS",
-      "email": "matheus_ribeiro.g@hotmail.com",
-      "cpf": "061.583.985-19",
-      "admissionDate": "13/09/1961",
-      "status": "REVIEW"
+      "cpf": "78502270001"
     }
   ]
 }
