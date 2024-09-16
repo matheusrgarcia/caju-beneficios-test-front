@@ -1,8 +1,9 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { vi, Mock } from "vitest";
-import { useGetRegistrationByCpfMutation } from "./mutations/use-get-registration-by-cpf-mutation";
 import userEvent from "@testing-library/user-event";
+
 import { mockedHistory, TestingWrapper } from "./test-utils";
+import { useGetRegistrationByCpfMutation } from "./mutations/use-get-registration-by-cpf-mutation";
 import { useGetRegistrationsQuery } from "./queries/use-get-registrations-query";
 import { DashboardPage } from "./views";
 

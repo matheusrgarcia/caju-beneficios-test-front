@@ -10,7 +10,7 @@ import { Registration, RegistrationStatusKeys } from "~/modules/shared/types";
 
 import { SortableItem } from "../sortable-item";
 import { RegistrationCard } from "../registration-card";
-import { dashboardColumnTitles } from "../../constants";
+import { dashboardStatusTitles } from "../../constants";
 
 import * as S from "./styles";
 
@@ -40,7 +40,7 @@ export const DraggableContainer: React.FC<DraggableContainerProps> = ({
       >
         <S.DragContainer ref={setNodeRef} status={status}>
           <S.TitleColumn status={status}>
-            {dashboardColumnTitles[status]}
+            {dashboardStatusTitles[status]}
           </S.TitleColumn>
           <Skeleton variant="rounded" animation="wave" height={60} />
           <Skeleton variant="rounded" height={60} />
@@ -59,7 +59,7 @@ export const DraggableContainer: React.FC<DraggableContainerProps> = ({
       >
         <S.DragContainer ref={setNodeRef} status={status}>
           <S.TitleColumn status={status}>
-            {dashboardColumnTitles[status]}
+            {dashboardStatusTitles[status]}
           </S.TitleColumn>
           <p>Sem candidatos no momento</p>
         </S.DragContainer>
@@ -75,7 +75,7 @@ export const DraggableContainer: React.FC<DraggableContainerProps> = ({
     >
       <S.DragContainer ref={setNodeRef} status={status}>
         <S.TitleColumn status={status}>
-          {dashboardColumnTitles[status]}
+          {dashboardStatusTitles[status]}
         </S.TitleColumn>
         {items.map((item) => (
           <SortableItem key={item.id} id={item.id}>

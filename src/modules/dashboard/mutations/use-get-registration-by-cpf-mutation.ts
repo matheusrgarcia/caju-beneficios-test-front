@@ -11,6 +11,7 @@ import {
   REGISTRATION_MUTATION_KEYS,
   REGISTRATION_QUERY_KEYS,
 } from "~/modules/shared/constants";
+import { useSnackbar } from "~/modules/shared/contexts";
 
 type GetRegistrationByCpfRequest = {
   cpf: string;
@@ -23,6 +24,7 @@ export const useGetRegistrationByCpfMutation = (): UseMutationResult<
   unknown
 > => {
   const queryClient = useQueryClient();
+  const { openSnackbar } = useSnackbar();
 
   const getRegistrationsByCpf = useMutation({
     mutationKey: [REGISTRATION_MUTATION_KEYS.get],
@@ -34,6 +36,10 @@ export const useGetRegistrationByCpfMutation = (): UseMutationResult<
     },
     onError: (error: AxiosError<string | number | Record<string, string>>) => {
       console.error(error);
+      openSnackbar({
+        message: "Erro ao buscar registro por CPF",
+        severity: "error",
+      });
     },
     onSuccess: (response) => {
       queryClient.setQueryData(

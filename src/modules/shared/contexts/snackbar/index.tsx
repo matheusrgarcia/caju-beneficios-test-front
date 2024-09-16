@@ -1,8 +1,10 @@
+import { AlertColor } from "@mui/material";
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 type SnackbarData = {
   message: string;
   action?: React.ReactNode;
+  severity?: AlertColor;
 };
 
 type SnackbarContextType = {

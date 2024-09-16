@@ -9,13 +9,7 @@ export type DashboardColumns = {
   registrations: GetRegistrationsResponse;
 };
 
-export const dashboardColumnItems = [
-  { status: RegistrationStatus.REVIEW, title: "Pronto para revisar" },
-  { status: RegistrationStatus.APPROVED, title: "Aprovado" },
-  { status: RegistrationStatus.REPROVED, title: "Reprovado" },
-];
-
-export const dashboardColumnTitles = {
+export const dashboardStatusTitles = {
   [RegistrationStatus.REVIEW]: "Pronto para revisar",
   [RegistrationStatus.APPROVED]: "Aprovado",
   [RegistrationStatus.REPROVED]: "Reprovado",

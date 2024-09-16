@@ -12,6 +12,7 @@ import {
 import { RegistrationStatusKeys, Registration } from "~/modules/shared/types";
 
 import * as service from "../../shared/services";
+import { useSnackbar } from "~/modules/shared/contexts";
 
 type UpdateRegistrationRequest = {
   id: string;
@@ -25,6 +26,7 @@ export const useUpdateRegistrationMutation = (): UseMutationResult<
   unknown
 > => {
   const queryClient = useQueryClient();
+  const { openSnackbar } = useSnackbar();
 
   const updateRegistration = useMutation({
     mutationKey: [REGISTRATION_MUTATION_KEYS.update],
@@ -36,6 +38,10 @@ export const useUpdateRegistrationMutation = (): UseMutationResult<
     },
     onError: (error: AxiosError<string | number | Record<string, string>>) => {
       console.error(error);
+      openSnackbar({
+        message: "Erro ao atualizar o status do registro",
+        severity: "error",
+      });
     },
     onSuccess: (_, { id, status }) => {
       queryClient.setQueryData(
@@ -46,6 +52,10 @@ export const useUpdateRegistrationMutation = (): UseMutationResult<
           );
         }
       );
+      openSnackbar({
+        message: "Sucesso ao atualizar o status do registro",
+        severity: "success",
+      });
     },
   });
 

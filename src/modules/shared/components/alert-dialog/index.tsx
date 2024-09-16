@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -9,6 +8,7 @@ import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 
 import { useModal } from "../../contexts/index";
+import { Button } from "../buttons/button";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -39,8 +39,12 @@ export const AlertDialog: React.FC = () => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={closeModal}>Cancelar</Button>
+        <Button onClick={closeModal} color="error" variant="contained">
+          Cancelar
+        </Button>
         <Button
+          color="success"
+          variant="contained"
           onClick={() => {
             modalData.onConfirm();
             closeModal();
