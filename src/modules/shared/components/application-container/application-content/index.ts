@@ -4,7 +4,7 @@ import tokens from "~/modules/shared/tokens";
 export const Content = styled.main`
   display: flex;
   flex-direction: column;
-  max-width: 600px;
+  max-width: 1000px;
   width: 100%;
   gap: ${tokens.space.large};
 

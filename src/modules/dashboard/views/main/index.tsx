@@ -11,12 +11,14 @@ const DashboardPage: React.FC = () => {
   const { data: registrations, isLoading } = useGetRegistrationsQuery();
 
   return (
-    <LayoutContainer>
-      <SearchBar />
-      <RegistrationColumns
-        registrations={registrations as GetRegistrationsResponse}
-        isLoading={isLoading}
-      />
+    <LayoutContainer centralized>
+      <LayoutContainer.Content>
+        <SearchBar />
+        <RegistrationColumns
+          registrations={registrations as GetRegistrationsResponse}
+          isLoading={isLoading}
+        />
+      </LayoutContainer.Content>
     </LayoutContainer>
   );
 };

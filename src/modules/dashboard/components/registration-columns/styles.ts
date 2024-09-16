@@ -4,10 +4,11 @@ import tokens from "~/modules/shared/tokens";
 
 export const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: ${tokens.space.large};
   justify-content: center;
   margin-top: ${tokens.space.large};
+  width: 100%;
 
   @media screen and (max-width: ${tokens.breakpoints.s}) {
     display: flex;
