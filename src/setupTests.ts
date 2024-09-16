@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 
 import { setupServer } from "msw/node";
 import { vi } from "vitest";
-import { mockedHistory } from "./modules/dashboard/test-utils";
+import { mockedHistory } from "./modules/shared/test-utils";
 
 export const mswServer = setupServer();
 

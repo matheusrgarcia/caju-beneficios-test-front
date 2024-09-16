@@ -5,7 +5,7 @@ import { Router } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 
 import { ErrorBoundary } from "./";
-import { mockedHistory } from "~/modules/dashboard/test-utils";
+import { mockedHistory } from "~/modules/shared/test-utils";
 
 describe("ErrorBoundary", () => {
   beforeEach(() => {
