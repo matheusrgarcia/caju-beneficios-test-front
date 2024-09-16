@@ -1,19 +1,11 @@
 {
   "registrations": [
     {
-      "employeeName": "Larissa Marissa",
-      "email": "matheus_ribeiro.g@hotmail.com",
-      "cpf": "06158398519",
-      "admissionDate": "1997-03-05",
-      "status": "APPROVED",
-      "id": "d140"
-    },
-    {
       "employeeName": "Teste de Sistema",
       "email": "matheus_ribeiro.g@hotmail.com",
       "cpf": "061.583.985-19",
       "admissionDate": "1997-03-09",
-      "status": "REVIEW",
+      "status": "APPROVED",
       "id": "a4fd"
     },
     {

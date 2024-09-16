@@ -8,6 +8,7 @@ import { IconButton, Tooltip } from "@mui/material";
 import dayjs from "dayjs";
 
 import { Registration } from "~/modules/shared/types";
+import { useModal } from "~/modules/shared/contexts";
 
 import { useDeleteRegistrationMutation } from "../../mutations/use-delete-registration-mutation";
 import { RegistrationCardActions } from "./card-actions";
@@ -21,6 +22,8 @@ type Props = {
 export const RegistrationCard: React.FC<Props> = ({ registration }) => {
   const { employeeName, email, admissionDate, id } = registration;
 
+  const { openModal } = useModal();
+
   const deleteRegistration = useDeleteRegistrationMutation();
 
   const formattedAdmissionDate = dayjs(admissionDate).format("DD/MM/YYYY");
@@ -28,6 +31,14 @@ export const RegistrationCard: React.FC<Props> = ({ registration }) => {
   const handleRegistrationDeletion = (): void => {
     deleteRegistration.mutate({
       id,
+    })
+  };
+
+  const handleOpenModal = (): void => {
+    openModal({
+      title: "Exclusão de Registro",
+      message: "Deseja realmente excluir este registro?",
+      onConfirm: () => handleRegistrationDeletion(),
     });
   };
 
@@ -38,7 +49,7 @@ export const RegistrationCard: React.FC<Props> = ({ registration }) => {
           <IconButton
             aria-label="Excluir registro"
             size="medium"
-            onClick={handleRegistrationDeletion}
+            onClick={handleOpenModal}
             draggable={false}
           >
             <HiOutlineTrash />
