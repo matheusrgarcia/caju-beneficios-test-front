@@ -29,3 +29,8 @@ export const TitleColumn = styled.h3<{ status: RegistrationStatusKeys }>`
   color: ${({ status }) =>
     registrationStatusStyles[status as RegistrationStatusKeys]?.title};
 `;
+
+export const NoCanditates = styled.p`
+  font-weight: ${tokens.fontWeights.medium};
+  margin: ${tokens.space.small};
+`;

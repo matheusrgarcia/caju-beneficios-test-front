@@ -61,7 +61,7 @@ export const DraggableContainer: React.FC<DraggableContainerProps> = ({
           <S.TitleColumn status={status}>
             {dashboardStatusTitles[status]}
           </S.TitleColumn>
-          <p>Sem candidatos no momento</p>
+          <S.NoCanditates>Sem candidatos cadastrados</S.NoCanditates>
         </S.DragContainer>
       </SortableContext>
     );
