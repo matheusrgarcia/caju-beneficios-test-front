@@ -8,7 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 
-import { useModal } from "../../contexts";
+import { useModal } from "../../contexts/index";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {

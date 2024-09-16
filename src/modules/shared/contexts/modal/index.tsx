@@ -14,7 +14,7 @@ type ModalContextType = {
   isOpen: boolean;
 };
 
-const ModalContext = createContext<ModalContextType | undefined>(undefined);
+export const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
 export const ModalProvider: React.FC<{ children: ReactNode }> = ({
   children,

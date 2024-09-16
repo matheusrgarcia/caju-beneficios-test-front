@@ -8,7 +8,7 @@ import { IconButton, Tooltip } from "@mui/material";
 import dayjs from "dayjs";
 
 import { Registration } from "~/modules/shared/types";
-import { useModal } from "~/modules/shared/contexts";
+import { useModal } from "~/modules/shared/contexts/modal";
 
 import { useDeleteRegistrationMutation } from "../../mutations/use-delete-registration-mutation";
 import { RegistrationCardActions } from "./card-actions";

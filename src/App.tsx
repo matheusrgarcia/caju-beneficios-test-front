@@ -3,8 +3,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-import { Header, AlertDialog } from "./modules/shared/components";
-import { ModalProvider } from "./modules/shared/contexts";
+import { Header, AlertDialog, Snackbar } from "./modules/shared/components";
+import { ModalProvider } from "./modules/shared/contexts/modal";
 
 const App: React.FC = () => {
   const queryClient = new QueryClient();
@@ -17,6 +17,7 @@ const App: React.FC = () => {
             <h1>Caju Front Teste</h1>
           </Header>
           <AlertDialog />
+          <Snackbar />
           <Router />
         </ModalProvider>
       </QueryClientProvider>
