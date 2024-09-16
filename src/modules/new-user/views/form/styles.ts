@@ -8,7 +8,7 @@ export const FormCard = styled.form`
   padding: ${tokens.space.largest};
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: ${tokens.space.regular};
   margin-top: ${tokens.space.huge};
 
   @media screen and (max-width: ${tokens.breakpoints.s}) {
@@ -16,4 +16,9 @@ export const FormCard = styled.form`
     border: none;
     padding: ${tokens.space.regular};
   }
+`;
+
+export const FormTitle = styled.h3`
+  font-size: ${tokens.fontSizes.l};
+  font-weight: ${tokens.fontWeights.light};
 `;

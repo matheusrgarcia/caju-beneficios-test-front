@@ -15,6 +15,7 @@ import { useGetRegistrationsQuery } from "../../queries/use-get-registrations-qu
 import { useGetRegistrationByCpfMutation } from "../../mutations/use-get-registration-by-cpf-mutation";
 
 import * as S from "./styles";
+import { CPF_MASK } from "~/modules/shared/constants";
 
 type SearchBarProps = {
   onChange?: (value: string) => void;
@@ -86,7 +87,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
               input: {
                 inputComponent: IMaskInput,
                 inputProps: {
-                  mask: "000.000.000-00",
+                  mask: CPF_MASK,
                   onAccept: (value: string) => {
                     field.onChange(value);
                     handleMaskedChange(value);

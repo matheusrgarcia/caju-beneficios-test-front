@@ -5,27 +5,15 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 
 import { LayoutContainer, TextField } from "~/modules/shared/components";
-import { Registration, RegistrationStatusKeys } from "~/modules/shared/types";
+import { Registration } from "~/modules/shared/types";
+import { isValidCPF } from "~/modules/shared/utils/cpf-utils";
+import { useModal } from "~/modules/shared/contexts";
 
 import { useCreateRegistrationMutation } from "../../mutations/use-create-registration-mutation";
+import { CPFMaskInputProps, FormValues } from "../../types";
 
 import * as S from "./styles";
-import { InputBaseComponentProps } from "@mui/material";
-
-type FormValues = Registration & {
-  cpf: string;
-  employeeName: string;
-  admissionDate: string;
-  email: string;
-  id: string;
-  status: RegistrationStatusKeys;
-};
-
-interface CPFMaskInputProps extends InputBaseComponentProps {
-  mask: string;
-  onAccept: (value: string) => void;
-  overwrite: boolean;
-}
+import { CPF_MASK } from "~/modules/shared/constants";
 
 const CPFMaskInput = React.forwardRef<HTMLInputElement, CPFMaskInputProps>(
   function CPFMaskInput(props, ref) {
@@ -36,7 +24,7 @@ const CPFMaskInput = React.forwardRef<HTMLInputElement, CPFMaskInputProps>(
         mask={mask}
         onAccept={onAccept}
         overwrite={overwrite}
-        inputRef={ref as React.Ref<HTMLInputElement>} // Ensure the correct ref type
+        inputRef={ref as React.Ref<HTMLInputElement>}
       />
     );
   }
@@ -44,6 +32,7 @@ const CPFMaskInput = React.forwardRef<HTMLInputElement, CPFMaskInputProps>(
 
 export const NewRegistrationForm: React.FC = () => {
   const createRegistration = useCreateRegistrationMutation();
+  const { openModal } = useModal();
 
   const {
     register,
@@ -51,16 +40,25 @@ export const NewRegistrationForm: React.FC = () => {
     control,
     setValue,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormValues>({
+    shouldFocusError: false,
+    reValidateMode: "onChange",
+  });
 
   const onSubmit: SubmitHandler<FormValues> = (data: Registration) => {
-    createRegistration.mutate(data);
+    openModal({
+      title: "Confirmar cadastro de registro",
+      message: `Deseja realmente salvar este registro?`,
+      onConfirm: () => createRegistration.mutate(data),
+    });
   };
 
   return (
     <S.FormCard onSubmit={handleSubmit(onSubmit)}>
       <LayoutContainer centralized>
         <LayoutContainer.Content>
+          <S.FormTitle>Cadastro de Registro</S.FormTitle>
+
           <TextField
             placeholder="Nome"
             label="Nome"
@@ -75,7 +73,7 @@ export const NewRegistrationForm: React.FC = () => {
             label="Email"
             type="email"
             {...register("email", {
-              required: "Email is required",
+              required: "Email é requerido",
               pattern: {
                 value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
                 message: "Email inválido",
@@ -89,6 +87,10 @@ export const NewRegistrationForm: React.FC = () => {
           <Controller
             name="cpf"
             control={control}
+            rules={{
+              required: "CPF é requerido",
+              validate: (value) => isValidCPF(value) || "CPF inválido",
+            }}
             render={({ field }) => (
               <TextField
                 {...field}
@@ -101,7 +103,7 @@ export const NewRegistrationForm: React.FC = () => {
                   input: {
                     inputComponent: CPFMaskInput,
                     inputProps: {
-                      mask: "000.000.000-00",
+                      mask: CPF_MASK,
                       onAccept: (value: string) => {
                         setValue("cpf", value);
                         field.onChange(value);
@@ -110,7 +112,6 @@ export const NewRegistrationForm: React.FC = () => {
                     },
                   },
                 }}
-                {...register("cpf", { required: "CPF é requerido" })}
                 error={!!errors.cpf}
                 helperText={errors.cpf ? errors.cpf.message : ""}
                 placeholder="Digite um CPF válido"
@@ -122,16 +123,23 @@ export const NewRegistrationForm: React.FC = () => {
             name="admissionDate"
             control={control}
             defaultValue=""
-            rules={{ required: "É necessário cadastrar uma Data de admissão" }}
+            rules={{
+              required: "É necessário cadastrar uma Data de admissão",
+              validate: (value) => {
+                const isValidDate = dayjs(value, "DD/MM/YYYY", true).isValid();
+                return isValidDate || "Data inválida";
+              },
+            }}
             render={({ field }) => (
               <DatePicker
-                label="Data de admissão"
-                value={field.value ? dayjs(field.value) : null}
+                label="Data de admissão*"
+                value={field.value ? dayjs(field.value, "DD/MM/YYYY") : null}
                 onChange={(newValue) =>
                   field.onChange(
                     newValue ? dayjs(newValue).format("DD/MM/YYYY") : ""
                   )
                 }
+                format="DD/MM/YYYY"
                 slotProps={{
                   textField: {
                     fullWidth: true,

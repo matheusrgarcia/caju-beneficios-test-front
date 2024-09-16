@@ -7,10 +7,10 @@ export const CustomButton = styled(Button)`
 `;
 
 export const Actions = styled.div`
-  margin-top: ${tokens.space.regular};
   display: flex;
   align-items: center;
-  gap: 4px;
+  margin-top: ${tokens.space.regular};
+  gap: ${tokens.space.smallest};
 
   & > * {
     flex: 1;
