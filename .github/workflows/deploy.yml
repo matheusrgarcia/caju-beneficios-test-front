@@ -3,10 +3,10 @@ name: CI/CD Workflow
 on:
   push:
     branches:
-      - main # O deploy será feito apenas quando houver um push na branch "main"
+      - main
   pull_request:
     branches:
-      - main # Também executa testes ao criar pull requests para "main"
+      - main
 
 jobs:
   install_dependencies:
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20" # Define a versão do Node.js
+          node-version: "20"
 
       - name: Install dependencies
         run: npm install
@@ -27,7 +27,7 @@ jobs:
   lint_and_test:
     runs-on: ubuntu-latest
 
-    needs: install_dependencies # Este job só começa após instalar dependências
+    needs: install_dependencies
 
     steps:
       - name: Checkout code

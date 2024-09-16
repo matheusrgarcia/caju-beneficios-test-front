@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { HEADER_HEIGHT } from "../../constants";
 import tokens from "../../tokens";
 
-export const Container = styled.div`
+export const AppContainer = styled.div`
   margin-top: ${HEADER_HEIGHT};
   display: flex;
   flex-direction: column;

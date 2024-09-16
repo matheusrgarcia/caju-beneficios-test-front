@@ -1,12 +1,13 @@
 import * as React from "react";
+
+import { ApplicationContainer } from "~/modules/shared/components";
 import { NewRegistrationForm } from "../form";
-import { Container } from "~/modules/shared/components";
 
 const NewUserPage: React.FC = () => {
   return (
-    <Container>
+    <ApplicationContainer>
       <NewRegistrationForm />
-    </Container>
+    </ApplicationContainer>
   );
 };
 
