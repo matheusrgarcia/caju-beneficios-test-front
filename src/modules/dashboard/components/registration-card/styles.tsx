@@ -44,13 +44,17 @@ export const DeleteContainer = styled.div`
   background: none;
   border: none;
   cursor: pointer;
+
+  svg {
+    z-index: 1;
+    background: ${tokens.colors.white};
+  }
 `;
 
 export const IconAndText = styled.div`
   display: flex;
   align-items: center;
   gap: ${tokens.space.smaller};
-  flex-wrap: wrap;
   word-wrap: break-word;
   overflow: hidden;
   max-width: 100%;
