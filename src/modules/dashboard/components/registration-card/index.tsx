@@ -5,7 +5,6 @@ import {
   HiOutlineTrash,
 } from "react-icons/hi";
 import { IconButton, Tooltip } from "@mui/material";
-import dayjs from "dayjs";
 
 import { Registration } from "~/modules/shared/types";
 import { useModal } from "~/modules/shared/contexts/modal";
@@ -26,12 +25,10 @@ export const RegistrationCard: React.FC<Props> = ({ registration }) => {
 
   const deleteRegistration = useDeleteRegistrationMutation();
 
-  const formattedAdmissionDate = dayjs(admissionDate).format("DD/MM/YYYY");
-
   const handleRegistrationDeletion = (): void => {
     deleteRegistration.mutate({
       id,
-    })
+    });
   };
 
   const handleOpenModal = (): void => {
@@ -66,7 +63,7 @@ export const RegistrationCard: React.FC<Props> = ({ registration }) => {
       </S.IconAndText>
       <S.IconAndText>
         <HiOutlineCalendar />
-        <span>{formattedAdmissionDate}</span>
+        <span>{admissionDate}</span>
       </S.IconAndText>
       <RegistrationCardActions registration={registration} />
     </S.Card>

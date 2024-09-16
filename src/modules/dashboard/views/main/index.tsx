@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { useGetRegistrationsQuery } from "~/modules/dashboard/queries/use-get-registrations-query";
 import { GetRegistrationsResponse } from "~/modules/shared/types";
-import { ApplicationContainer } from "~/modules/shared/components";
+import { LayoutContainer } from "~/modules/shared/components";
 
 import { SearchBar } from "../../components/search-bar";
 import { RegistrationColumns } from "../../components/registration-columns";
@@ -11,13 +11,13 @@ const DashboardPage: React.FC = () => {
   const { data: registrations, isLoading } = useGetRegistrationsQuery();
 
   return (
-    <ApplicationContainer>
+    <LayoutContainer>
       <SearchBar />
       <RegistrationColumns
         registrations={registrations as GetRegistrationsResponse}
         isLoading={isLoading}
       />
-    </ApplicationContainer>
+    </LayoutContainer>
   );
 };
 export default DashboardPage;

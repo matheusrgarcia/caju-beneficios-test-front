@@ -1,13 +1,25 @@
-import React from "react";
+import { FC, ReactNode } from "react";
+import { Footer } from "./application-footer";
+import { Content } from "./application-content";
 
 import * as S from "./styles";
 
-type ApplicationContainerProps = {
-  children: React.ReactNode;
+type Props = {
+  children: ReactNode;
+  centralized?: boolean;
 };
 
-export const ApplicationContainer: React.FC<ApplicationContainerProps> = ({
-  children,
-}) => {
-  return <S.AppContainer>{children}</S.AppContainer>;
+type LayoutContainerComponent = FC<Props> & {
+  Footer: typeof Footer;
+  Content: typeof Content;
 };
+
+export const LayoutContainer: LayoutContainerComponent = ({
+  children,
+  centralized,
+}) => {
+  return <S.AppContainer $centralized={centralized}>{children}</S.AppContainer>;
+};
+
+LayoutContainer.Footer = Footer;
+LayoutContainer.Content = Content;

@@ -1,29 +1,7 @@
 
 # Caju Front End Teste
 
-Esse é um desafio técnico para você demonstrar suas habilidades como frontend, sua missão será dar continuidade ao desenvolvimento da plataforma de admissão que consiste em duas telas, a tela de `Dashboard` e uma tela de `Cadastro`.
-
-O `Dashboard` mostra todas as admissões criadas, com as opções de aprovar, reprovar e excluir.
-
-![Screenshot 2024-06-11 at 11 48 24 AM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/fedeff5c-a0d3-4df1-aebd-1f2d25c56a48)
-
-Dashboard com a listagem das admissões.
-
-![Screenshot 2024-06-11 at 1 52 35 PM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/3b002341-454b-4b24-82cb-6390656b56cc)
-
-A tela de `Cadastro` exibe um formulário simples que será utilizado para criar as admissões.
-
-![Screenshot 2024-06-11 at 11 48 47 AM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/bbbb211c-165f-40e5-b2af-61adafd61398)
-
-## Apresentanção do problema
-
-O desafio é aprimorar o código existente e implementar as funcionalidades que estão incompletas, use a sua experiência para identificar e propor soluções para os problemas encontrados.
-Sinta-se a vontade para refatorar, criar novas pastas, componentes, hooks, utils e o que mais achar necessário para garantir que o projeto esteja organizado e segue as boas práticas de desenvolvimento.
-
-
-## Especificações
-
-### Tela Dashboard
+### Tela Dashboard Checklist
   
 - Implementar `GET` ao carregar a pagina e ao fazer pequisa por `CPF`
 - Filtrar os cards por coluna, usando o status.
@@ -98,45 +76,3 @@ https://github.com/typicode/json-server/tree/v0?tab=readme-ov-file#filter
 - Senso crítico e analítico
 
 `Nos surpreenda demonstrando toda a sua habilidade e conhecimento.`
-
-## Iniciando o desenvolvimento
-
-Realize o clone do repositório e instale as dependências
-
-```shell
-git clone https://github.com/caju-beneficios/caju-front-teste-1.git
-cd caju-front-test-1
-```
-
-```shell
-yarn install
-```
-
-Inicie o servidor do Json Web Server para consumir a API
-
-```shell
-yarn init:db
-```
-
-Execute a aplicação
-
-```shell
-yarn dev
-```
-
-Se tudo ocorreu bem os seguintes serviços estarão disponiveis em:
-<br/>
-
-Aplicação http://localhost:3001/
-<br/>
-Json Web Server http://localhost:3000/
-
-Caso necessite executar a suíte de testes use o comando abaixo:
-
-```shell
-yarn test:dev
-```
-
-
-Para concluir o desenvolvimento faça as edições necessárias e depois envie a URL do novo repositório com suas alterações para o RH.
-

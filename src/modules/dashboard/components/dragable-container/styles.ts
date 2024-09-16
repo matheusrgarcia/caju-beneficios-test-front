@@ -10,6 +10,7 @@ export const DragContainer = styled.div<{ status: RegistrationStatusKeys }>`
   flex-direction: column;
   gap: ${tokens.space.small};
   height: auto;
+  overflow: auto;
   background-color: ${({ status }) =>
     registrationStatusStyles[status as RegistrationStatusKeys]?.background};
   border-radius: ${tokens.space.small};

@@ -30,7 +30,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'error',
     'no-console': ['warn', { allow: ['warn', 'error'] }],
     'eqeqeq': 'error',
-    'no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'consistent-return': 'error',
     '@typescript-eslint/explicit-function-return-type': ['error', { allowExpressions: true }],
     'no-var': 'error',

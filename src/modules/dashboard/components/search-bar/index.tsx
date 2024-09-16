@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { debounce } from "lodash";
 import { IconButton, Tooltip } from "@mui/material";
+import { IMaskInput } from "react-imask";
 
 import { Button } from "~/modules/shared/components";
 import useScreenSize from "~/modules/shared/utils/useScreenSize";
@@ -16,7 +17,6 @@ import { useGetRegistrationByCpfMutation } from "../../mutations/use-get-registr
 import * as S from "./styles";
 
 type SearchBarProps = {
-  // eslint-disable-next-line no-unused-vars
   onChange?: (value: string) => void;
 };
 
@@ -74,10 +74,21 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
         render={({ field }) => (
           <S.CpfInput
             {...field}
-            mask="000.000.000-00"
-            onAccept={(value) => {
-              field.onChange(value);
-              handleMaskedChange(value);
+            label="CPF"
+            variant="outlined"
+            fullWidth
+            slotProps={{
+              input: {
+                inputComponent: IMaskInput,
+                inputProps: {
+                  mask: "000.000.000-00",
+                  onAccept: (value: string) => {
+                    field.onChange(value);
+                    handleMaskedChange(value);
+                  },
+                  overwrite: true,
+                },
+              },
             }}
             placeholder="Digite um CPF válido"
             {...rest}
