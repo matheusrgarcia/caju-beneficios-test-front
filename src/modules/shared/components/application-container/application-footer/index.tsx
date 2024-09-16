@@ -38,7 +38,7 @@ Footer.ContinueButton = function FooterContinueButton({ ...props }) {
       variant="contained"
       {...props}
     >
-      Continuar
+      Salvar Registro
     </S.FooterButton>
   );
 };

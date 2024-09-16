@@ -47,10 +47,15 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
     const cleanedCpf = cleanCpf(cpfValue);
 
     if (!cleanedCpf) {
+      debouncedSearch.cancel();
       reloadQuery();
     } else {
       debouncedSearch(cpfValue);
     }
+
+    return () => {
+      debouncedSearch.cancel();
+    };
   }, [cpfValue, debouncedSearch, reloadQuery]);
 
   const handleRefetch = (): void => {
