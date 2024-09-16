@@ -1,6 +1,5 @@
 import { httpClient } from "./api/http-client";
-import { Registration } from "./constants";
-import { GetRegistrationsResponse } from "./types";
+import { GetRegistrationsResponse, Registration } from "./types";
 
 export const getRegistrations = (): Promise<GetRegistrationsResponse> => {
   return httpClient

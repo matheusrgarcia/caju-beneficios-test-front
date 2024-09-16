@@ -11,20 +11,21 @@ import {
   UniqueIdentifier,
 } from "@dnd-kit/core";
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
-import {
-  Registration,
-  RegistrationStatus,
-  RegistrationStatusKeys,
-} from "~/modules/shared/constants";
+
+import { RegistrationStatus } from "~/modules/shared/constants";
+import { Registration, RegistrationStatusKeys } from "~/modules/shared/types";
+import useScreenSize from "~/modules/shared/utils/useScreenSize";
+
+import { useUpdateRegistrationMutation } from "../../mutations/use-update-registration-mutation";
 import { DraggableContainer } from "../dragable-container";
 import { RegistrationCard } from "../registration-card";
 
 import * as S from "./styles";
-import { useUpdateRegistrationMutation } from "../../mutations/use-update-registration-mutation";
-import useScreenSize from "~/modules/shared/utils/useScreenSize";
+import { containerStatusMap } from "../../constants";
 
 type RegistrationColumnsProps = {
   registrations: Registration[];
+  isLoading: boolean;
 };
 
 type ItemsState = {
@@ -35,6 +36,7 @@ type ItemsState = {
 
 export const RegistrationColumns: React.FC<RegistrationColumnsProps> = ({
   registrations,
+  isLoading,
 }) => {
   const { isDesktop } = useScreenSize();
   const [items, setItems] = useState<ItemsState>({
@@ -177,14 +179,7 @@ export const RegistrationColumns: React.FC<RegistrationColumnsProps> = ({
       return;
     }
 
-    let newStatus: RegistrationStatusKeys | undefined;
-    if (overContainer === "reviewRoot") {
-      newStatus = RegistrationStatus.REVIEW;
-    } else if (overContainer === "approvedRoot") {
-      newStatus = RegistrationStatus.APPROVED;
-    } else if (overContainer === "reprovedRoot") {
-      newStatus = RegistrationStatus.REPROVED;
-    }
+    const newStatus: RegistrationStatusKeys = containerStatusMap[overContainer];
 
     const updatedRegistration = {
       ...activeItem,
@@ -211,23 +206,26 @@ export const RegistrationColumns: React.FC<RegistrationColumnsProps> = ({
           key="reviewRoot"
           items={items.reviewRoot}
           status={RegistrationStatus.REVIEW}
+          isLoading={isLoading}
         />
         <DraggableContainer
           id="approvedRoot"
           key="approvedRoot"
           items={items.approvedRoot}
           status={RegistrationStatus.APPROVED}
+          isLoading={isLoading}
         />
         <DraggableContainer
           id="reprovedRoot"
           key="reprovedRoot"
           items={items.reprovedRoot}
           status={RegistrationStatus.REPROVED}
+          isLoading={isLoading}
         />
         <DragOverlay>
-          {activeItem ? (
+          {activeItem && (
             <RegistrationCard registration={activeItem} key={activeItem.id} />
-          ) : null}
+          )}
         </DragOverlay>
       </DndContext>
     </S.Container>

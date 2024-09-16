@@ -98,7 +98,7 @@ export const NewRegistrationForm: React.FC = () => {
             value={field.value ? dayjs(field.value) : null}
             onChange={(newValue) =>
               field.onChange(
-                newValue ? dayjs(newValue).format("YYYY-MM-DD") : ""
+                newValue ? dayjs(newValue).format("DD/MM/YYYY") : ""
               )
             }
             slotProps={{

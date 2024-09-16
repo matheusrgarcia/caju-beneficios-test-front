@@ -1,4 +1,3 @@
-import * as S from "./styles";
 import {
   HiOutlineMail,
   HiOutlineUser,
@@ -6,10 +5,14 @@ import {
   HiOutlineTrash,
 } from "react-icons/hi";
 import { IconButton, Tooltip } from "@mui/material";
+import dayjs from "dayjs";
+
+import { Registration } from "~/modules/shared/types";
 
 import { useDeleteRegistrationMutation } from "../../mutations/use-delete-registration-mutation";
 import { RegistrationCardActions } from "./card-actions";
-import { Registration } from "~/modules/shared/types";
+
+import * as S from "./styles";
 
 type Props = {
   registration: Registration;
@@ -19,6 +22,8 @@ export const RegistrationCard: React.FC<Props> = ({ registration }) => {
   const { employeeName, email, admissionDate, id } = registration;
 
   const deleteRegistration = useDeleteRegistrationMutation();
+
+  const formattedAdmissionDate = dayjs(admissionDate).format("DD/MM/YYYY");
 
   const handleRegistrationDeletion = (): void => {
     deleteRegistration.mutate({
@@ -50,7 +55,7 @@ export const RegistrationCard: React.FC<Props> = ({ registration }) => {
       </S.IconAndText>
       <S.IconAndText>
         <HiOutlineCalendar />
-        <span>{admissionDate}</span>
+        <span>{formattedAdmissionDate}</span>
       </S.IconAndText>
       <RegistrationCardActions registration={registration} />
     </S.Card>

@@ -38,3 +38,9 @@ export const registrationStatusStyles: Record<
     title: "#CE2893",
   },
 };
+
+export const containerStatusMap: Record<string, RegistrationStatusKeys> = {
+  reviewRoot: RegistrationStatus.REVIEW,
+  approvedRoot: RegistrationStatus.APPROVED,
+  reprovedRoot: RegistrationStatus.REPROVED,
+};

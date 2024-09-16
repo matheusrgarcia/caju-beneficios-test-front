@@ -8,13 +8,14 @@ import { SearchBar } from "../../components/search-bar";
 import { RegistrationColumns } from "../../components/registration-columns";
 
 const DashboardPage: React.FC = () => {
-  const { data: registrations } = useGetRegistrationsQuery();
+  const { data: registrations, isLoading } = useGetRegistrationsQuery();
 
   return (
     <Container>
       <SearchBar />
       <RegistrationColumns
         registrations={registrations as GetRegistrationsResponse}
+        isLoading={isLoading}
       />
     </Container>
   );
