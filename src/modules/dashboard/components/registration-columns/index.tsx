@@ -181,6 +181,11 @@ export const RegistrationColumns: React.FC<RegistrationColumnsProps> = ({
 
     const newStatus: RegistrationStatusKeys = containerStatusMap[overContainer];
 
+    if (activeItem.status === newStatus) {
+      setActiveItem(null);
+      return;
+    }
+
     const updatedRegistration = {
       ...activeItem,
       status: newStatus,
