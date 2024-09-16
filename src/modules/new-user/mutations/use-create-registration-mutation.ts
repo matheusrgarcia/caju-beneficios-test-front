@@ -15,6 +15,7 @@ import { Registration } from "~/modules/shared/types";
 import routes from "~/router/routes";
 
 import * as service from "../../shared/services";
+import { useSnackbar } from "~/modules/shared/contexts";
 
 export const useCreateRegistrationMutation = (): UseMutationResult<
   unknown,
@@ -24,6 +25,7 @@ export const useCreateRegistrationMutation = (): UseMutationResult<
 > => {
   const queryClient = useQueryClient();
   const history = useHistory();
+  const { openSnackbar } = useSnackbar();
 
   const createRegistration = useMutation({
     mutationKey: [REGISTRATION_MUTATION_KEYS.update],
@@ -35,8 +37,16 @@ export const useCreateRegistrationMutation = (): UseMutationResult<
     },
     onError: (error: AxiosError<string | number | Record<string, string>>) => {
       console.error(error);
+      openSnackbar({
+        message: "Erro ao salvar registro",
+        severity: "error",
+      });
     },
     onSuccess: (newRegistration) => {
+      openSnackbar({
+        message: "Sucesso ao salvar registro",
+        severity: "success",
+      });
       queryClient.setQueryData<Registration[] | undefined>(
         [REGISTRATION_QUERY_KEYS.getRegistrations],
         (oldData) => {
