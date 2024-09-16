@@ -3,7 +3,6 @@ import {
   FallbackProps,
   ErrorBoundary as ReactErrorBoundary,
 } from "react-error-boundary";
-import { useHistory } from "react-router-dom";
 
 import routes from "~/router/routes";
 
@@ -13,14 +12,8 @@ import { Button } from "../buttons/button";
 import * as S from "./index.styles";
 
 export const ErrorBoundaryFallback: FC<FallbackProps> = () => {
-  const history = useHistory();
-
   const handleClick = (): void => {
-    if (history) {
-      history.push(routes.dashboard);
-    } else {
-      window.location.pathname = routes.dashboard;
-    }
+    window.location.pathname = routes.dashboard;
   };
 
   return (
@@ -34,14 +27,15 @@ export const ErrorBoundaryFallback: FC<FallbackProps> = () => {
         </S.Description>
       </S.Info>
 
-      <Button onClick={handleClick}>Voltar a página inicial</Button>
+      <Button onClick={handleClick} color="success" variant="outlined">
+        Voltar a página inicial
+      </Button>
     </S.Container>
   );
 };
 
 export type ErrorBoundaryProps = {
   children: ReactNode;
-  // eslint-disable-next-line no-unused-vars
   onError?: (error: Error, info: React.ErrorInfo) => void;
 };
 

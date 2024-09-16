@@ -45,8 +45,8 @@ export const RegistrationCardActions: React.FC<Props> = ({ registration }) => {
       {!isInReview && (
         <S.CustomButton
           draggable={false}
-          variant="contained"
-          color="secondary"
+          variant="outlined"
+          color="warning"
           size="small"
           onClick={() => handleAction(RegistrationStatus.REVIEW)}
         >

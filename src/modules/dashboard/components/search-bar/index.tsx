@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { HiRefresh } from "react-icons/hi";
 import { FaPlus } from "react-icons/fa6";
 import { useHistory } from "react-router-dom";
@@ -23,7 +23,7 @@ type SearchBarProps = {
 
 export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
   const history = useHistory();
-  const { refetch: reloadQuery } = useGetRegistrationsQuery();
+  const { refetch } = useGetRegistrationsQuery();
   const { mutate: getRegistrationsByCpf } = useGetRegistrationByCpfMutation();
   const { isMobile } = useScreenSize();
 
@@ -33,23 +33,21 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
 
   const cpfValue = watch("cpf");
 
-  const debouncedSearch = useRef(
-    debounce((cpf: string) => {
+  const cleanCpf = (value: string): string => value?.replace(/\D/g, "");
+
+  useEffect(() => {
+    const debouncedSearch = debounce((cpf: string) => {
       const cleanedCpf = cleanCpf(cpf);
       if (cleanedCpf) {
         getRegistrationsByCpf({ cpf: cleanedCpf });
       }
-    }, 500)
-  ).current;
+    }, 500);
 
-  const cleanCpf = (value: string): string => value?.replace(/\D/g, "");
-
-  useEffect(() => {
     const cleanedCpf = cleanCpf(cpfValue);
 
     if (!cleanedCpf) {
       debouncedSearch.cancel();
-      reloadQuery();
+      refetch();
     } else {
       debouncedSearch(cpfValue);
     }
@@ -57,11 +55,11 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
     return () => {
       debouncedSearch.cancel();
     };
-  }, [cpfValue, debouncedSearch, reloadQuery]);
+  }, [cpfValue, refetch, getRegistrationsByCpf]);
 
   const handleRefetch = (): void => {
     setValue("cpf", "");
-    reloadQuery();
+    refetch();
   };
 
   const goToNewAdmissionPage = (): void => {
@@ -69,7 +67,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
   };
 
   const handleMaskedChange = (maskedValue: string): void => {
-    if (onChange) onChange(maskedValue);
+    onChange?.(maskedValue);
   };
 
   return (

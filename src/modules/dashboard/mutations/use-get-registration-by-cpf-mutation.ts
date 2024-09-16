@@ -32,6 +32,16 @@ export const useGetRegistrationByCpfMutation = (): UseMutationResult<
       if (!cpf) {
         return Promise.reject();
       }
+
+      const cachedData = queryClient.getQueryData([
+        REGISTRATION_QUERY_KEYS.getRegistrations,
+        cpf,
+      ]);
+
+      if (cachedData) {
+        return cachedData;
+      }
+
       return service.getRegistrationsByCpf(cpf);
     },
     onError: (error: AxiosError<string | number | Record<string, string>>) => {
@@ -41,9 +51,13 @@ export const useGetRegistrationByCpfMutation = (): UseMutationResult<
         severity: "error",
       });
     },
-    onSuccess: (response) => {
+    onSuccess: (response, { cpf }) => {
       queryClient.setQueryData(
         [REGISTRATION_QUERY_KEYS.getRegistrations],
+        response
+      );
+      queryClient.setQueryData(
+        [REGISTRATION_QUERY_KEYS.getRegistrations, cpf],
         response
       );
     },
