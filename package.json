@@ -9,7 +9,7 @@
     "build": "tsc && vite build",
     "test": "vitest",
     "test:dev": "jest --watch --verbose --no-cache",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview"
   },
   "dependencies": {

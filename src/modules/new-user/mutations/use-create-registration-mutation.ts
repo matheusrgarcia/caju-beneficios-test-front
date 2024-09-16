@@ -6,14 +6,15 @@ import {
 import { AxiosError } from "axios";
 import { useHistory } from "react-router-dom";
 
-import * as service from "../../shared/services";
 import {
-  Registration,
   REGISTRATION_MUTATION_KEYS,
   REGISTRATION_QUERY_KEYS,
   RegistrationStatus,
 } from "~/modules/shared/constants";
+import { Registration } from "~/modules/shared/types";
 import routes from "~/router/routes";
+
+import * as service from "../../shared/services";
 
 export const useCreateRegistrationMutation = (): UseMutationResult<
   unknown,
