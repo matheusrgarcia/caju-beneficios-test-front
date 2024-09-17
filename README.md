@@ -47,6 +47,11 @@ Para executar o teste e2e com Cypress
 yarn test:e2e
 ```
 
+Caso não queira rodar o frontend da aplicação localmente, acesse o link abaixo. Ainda é necessário rodar o banco de dados localmente.
+
+[Caju Benefícios Frontend](https://caju-beneficios-test-front.vercel.app/dashboard)
+
+
 ## Especificações
 
 ### Tela Dashboard Checklist
@@ -78,3 +83,5 @@ yarn test:e2e
 - [x] Testes Unitários e de Integração `(Obrigátorio para Senior e Tech Lead)`
 - [x] End-to-End (E2E)
 - [x] Configuração de CI/CD com deploy automatizado
+
+
