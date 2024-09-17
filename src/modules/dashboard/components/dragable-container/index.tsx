@@ -38,7 +38,11 @@ export const DraggableContainer: React.FC<DraggableContainerProps> = ({
         items={items.map((item) => item.id)}
         strategy={verticalListSortingStrategy}
       >
-        <S.DragContainer ref={setNodeRef} status={status}>
+        <S.DragContainer
+          ref={setNodeRef}
+          status={status}
+          data-testid={`dragzone-${status}`}
+        >
           <S.TitleColumn status={status}>
             {dashboardStatusTitles[status]}
           </S.TitleColumn>
@@ -57,7 +61,11 @@ export const DraggableContainer: React.FC<DraggableContainerProps> = ({
         items={items.map((item) => item.id)}
         strategy={verticalListSortingStrategy}
       >
-        <S.DragContainer ref={setNodeRef} status={status}>
+        <S.DragContainer
+          ref={setNodeRef}
+          status={status}
+          data-testid={`dragzone-${status}`}
+        >
           <S.TitleColumn status={status}>
             {dashboardStatusTitles[status]}
           </S.TitleColumn>
@@ -73,7 +81,11 @@ export const DraggableContainer: React.FC<DraggableContainerProps> = ({
       items={items.map((item) => item.id)}
       strategy={verticalListSortingStrategy}
     >
-      <S.DragContainer ref={setNodeRef} status={status}>
+      <S.DragContainer
+        ref={setNodeRef}
+        status={status}
+        data-testid={`dragzone-${status}`}
+      >
         <S.TitleColumn status={status}>
           {dashboardStatusTitles[status]}
         </S.TitleColumn>

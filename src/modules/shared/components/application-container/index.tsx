@@ -3,6 +3,8 @@ import { Footer } from "./application-footer";
 import { Content } from "./application-content";
 
 import * as S from "./styles";
+import { AlertDialog } from "../alert-dialog";
+import { Snackbar } from "../snackbar";
 
 type Props = {
   children: ReactNode;
@@ -18,7 +20,13 @@ export const LayoutContainer: LayoutContainerComponent = ({
   children,
   centralized,
 }) => {
-  return <S.AppContainer $centralized={centralized}>{children}</S.AppContainer>;
+  return (
+    <S.AppContainer $centralized={centralized}>
+      {children}
+      <AlertDialog />
+      <Snackbar />
+    </S.AppContainer>
+  );
 };
 
 LayoutContainer.Footer = Footer;
