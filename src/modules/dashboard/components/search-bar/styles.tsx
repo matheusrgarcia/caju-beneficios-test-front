@@ -22,3 +22,8 @@ export const Actions = styled.div`
 export const CpfInput = styled(TextField)`
   max-width: 300px;
 `;
+
+export const Flex = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

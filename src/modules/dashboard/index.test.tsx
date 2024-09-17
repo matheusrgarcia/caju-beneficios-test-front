@@ -36,7 +36,7 @@ describe("DashboardPage Component", () => {
       ).toBeInTheDocument();
     });
 
-    it("should call getRegistrationsByCpf after debounce when CPF is entered", async () => {
+    it("should call getRegistrationsByCpf after debounce when a Valid CPF is entered", async () => {
       const mockMutate = vi.fn();
       (useGetRegistrationByCpfMutation as Mock).mockReturnValue({
         mutate: mockMutate,
@@ -46,11 +46,33 @@ describe("DashboardPage Component", () => {
 
       const cpfInput = screen.getByPlaceholderText("Digite um CPF válido");
 
-      userEvent.type(cpfInput, "123.456.789-00");
+      userEvent.type(cpfInput, "323.578.560-41");
 
       await waitFor(() => {
-        expect(mockMutate).toHaveBeenCalledWith({ cpf: "12345678900" });
+        expect(mockMutate).toHaveBeenCalledWith({ cpf: "32357856041" });
       });
+    });
+
+    it("should NOT call getRegistrationsByCpf after debounce when a invalid CPF is entered", async () => {
+      const mockMutate = vi.fn();
+      (useGetRegistrationByCpfMutation as Mock).mockReturnValue({
+        mutate: mockMutate,
+      });
+
+      render(<DashboardPage />, { wrapper: TestingWrapper });
+
+      const cpfInput = screen.getByPlaceholderText("Digite um CPF válido");
+
+      userEvent.type(cpfInput, "123.456.789-10");
+
+      await waitFor(() => {
+        const errorMessage = screen.getByText(
+          "CPF inválido, digite um CPF válido"
+        );
+        expect(errorMessage).toBeInTheDocument();
+      });
+
+      expect(mockMutate).not.toHaveBeenCalledWith({ cpf: "12345678910" });
     });
 
     it("should clear the CPF and refetch registrations when refresh button is clicked", async () => {

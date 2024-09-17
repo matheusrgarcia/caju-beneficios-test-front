@@ -4,7 +4,7 @@ import { FaPlus } from "react-icons/fa6";
 import { useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { debounce } from "lodash";
-import { IconButton, Tooltip } from "@mui/material";
+import { IconButton, Tooltip, FormHelperText } from "@mui/material";
 import { IMaskInput } from "react-imask";
 
 import { Button } from "~/modules/shared/components";
@@ -16,6 +16,7 @@ import { useGetRegistrationByCpfMutation } from "../../mutations/use-get-registr
 
 import * as S from "./styles";
 import { CPF_MASK } from "~/modules/shared/constants";
+import { isValidCPF } from "~/modules/shared/utils/cpf-utils";
 
 type SearchBarProps = {
   onChange?: (value: string) => void;
@@ -27,7 +28,14 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
   const { mutate: getRegistrationsByCpf } = useGetRegistrationByCpfMutation();
   const { isMobile } = useScreenSize();
 
-  const { control, watch, setValue } = useForm({
+  const {
+    control,
+    watch,
+    setValue,
+    setError,
+    clearErrors,
+    formState: { errors },
+  } = useForm({
     defaultValues: { cpf: "" },
   });
 
@@ -38,8 +46,14 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
   useEffect(() => {
     const debouncedSearch = debounce((cpf: string) => {
       const cleanedCpf = cleanCpf(cpf);
+
       if (cleanedCpf) {
-        getRegistrationsByCpf({ cpf: cleanedCpf });
+        if (isValidCPF(cleanedCpf)) {
+          clearErrors("cpf");
+          getRegistrationsByCpf({ cpf: cleanedCpf });
+        } else {
+          setError("cpf", { message: "CPF inválido, digite um CPF válido" });
+        }
       }
     }, 500);
 
@@ -47,6 +61,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
 
     if (!cleanedCpf) {
       debouncedSearch.cancel();
+      clearErrors("cpf");
       refetch();
     } else {
       debouncedSearch(cpfValue);
@@ -55,9 +70,10 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
     return () => {
       debouncedSearch.cancel();
     };
-  }, [cpfValue, refetch, getRegistrationsByCpf]);
+  }, [cpfValue, refetch, getRegistrationsByCpf, setError, clearErrors]);
 
   const handleRefetch = (): void => {
+    clearErrors("cpf");
     setValue("cpf", "");
     refetch();
   };
@@ -76,27 +92,34 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
         name="cpf"
         control={control}
         render={({ field }) => (
-          <S.CpfInput
-            {...field}
-            label="CPF"
-            variant="outlined"
-            fullWidth
-            slotProps={{
-              input: {
-                inputComponent: IMaskInput,
-                inputProps: {
-                  mask: CPF_MASK,
-                  onAccept: (value: string) => {
-                    field.onChange(value);
-                    handleMaskedChange(value);
+          <S.Flex>
+            <S.CpfInput
+              {...field}
+              label="CPF"
+              variant="outlined"
+              fullWidth
+              slotProps={{
+                input: {
+                  inputComponent: IMaskInput,
+                  inputProps: {
+                    mask: CPF_MASK,
+                    onAccept: (value: string) => {
+                      field.onChange(value);
+                      handleMaskedChange(value);
+                    },
+                    overwrite: true,
                   },
-                  overwrite: true,
                 },
-              },
-            }}
-            placeholder="Digite um CPF válido"
-            {...rest}
-          />
+              }}
+              placeholder="Digite um CPF válido"
+              error={!!errors.cpf}
+              aria-errormessage={errors.cpf ? errors.cpf.message : ""}
+              {...rest}
+            />
+            {errors.cpf && (
+              <FormHelperText error>{errors.cpf.message}</FormHelperText>
+            )}
+          </S.Flex>
         )}
       />
       <S.Actions>
