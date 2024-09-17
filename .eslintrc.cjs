@@ -1,4 +1,9 @@
 module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    'cypress/globals': true,
+  },
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -7,7 +12,9 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "eslint-config-prettier",
     "plugin:react-hooks/recommended",
+    'plugin:cypress/recommended',
   ],
+  plugins: ['react', 'cypress'],
   settings: {
     react: {
       version: "detect",

@@ -39,10 +39,16 @@ export const AlertDialog: React.FC = () => {
         </DialogContentText>
       </DialogContent>
       <DialogActions data-testid="alert-dialog-actions">
-        <Button onClick={closeModal} color="error" variant="contained">
+        <Button
+          onClick={closeModal}
+          color="error"
+          variant="contained"
+          aria-label="Cancelar"
+        >
           Cancelar
         </Button>
         <Button
+          aria-label="Confirmar"
           color="success"
           variant="contained"
           onClick={() => {

@@ -155,6 +155,7 @@ export const NewRegistrationForm: React.FC = () => {
             }}
             render={({ field }) => (
               <DatePicker
+                name="admissionDate"
                 label="Data de admissão*"
                 value={field.value ? dayjs(field.value, "DD/MM/YYYY") : null}
                 onChange={(newValue) =>
@@ -177,7 +178,10 @@ export const NewRegistrationForm: React.FC = () => {
           />
         </LayoutContainer.Content>
         <LayoutContainer.Footer>
-          <LayoutContainer.Footer.ContinueButton type="submit" loading={isPending} />
+          <LayoutContainer.Footer.ContinueButton
+            type="submit"
+            loading={isPending}
+          />
         </LayoutContainer.Footer>
       </LayoutContainer>
     </S.FormCard>

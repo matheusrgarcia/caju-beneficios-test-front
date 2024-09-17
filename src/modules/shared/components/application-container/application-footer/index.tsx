@@ -36,6 +36,7 @@ Footer.ContinueButton = function FooterContinueButton({ ...props }) {
       data-testid="footer-continue-button"
       color="success"
       variant="contained"
+      aria-label="Salvar Registro"
       {...props}
     >
       Salvar Registro
