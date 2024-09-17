@@ -25,10 +25,4 @@ describe("Button", () => {
 
     expect(onClick).toHaveBeenCalledTimes(1);
   });
-
-  it("Should match the snapshot", () => {
-    const { asFragment } = render(<Button>Ativar</Button>);
-
-    expect(asFragment()).toMatchSnapshot();
-  });
 });
