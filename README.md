@@ -1,25 +1,33 @@
-
 # Caju Front End Teste
 
 Esse é um desafio técnico para você demonstrar suas habilidades como frontend, sua missão será dar continuidade ao desenvolvimento da plataforma de admissão que consiste em duas telas, a tela de `Dashboard` e uma tela de `Cadastro`.
 
+## Sobre a arquitetura do projeto.
+
+Este projeto utiliza uma arquitetura de modules, onde cada module é responsável por sí mesmo e isolado de outros modulos.
+
+O modulo responsável pelo `Dashboard` é o modulo `dashboard`
+O modulo responsável pelo `Cadastro` é o modulo `register`
+
+O modulo `shared` contêm componentes e utilitários que vão ser utilizados por ambos modulos, ou quaisquer modulos que venham a ser criados.
+
 ## Especificações
+
 ### Tela Dashboard Checklist
-  
+
 - [x] Implementar `GET` ao carregar a pagina e ao fazer pequisa por `CPF`
 - [x] Filtrar os cards por coluna, usando o status.
 - [x] Implementar `PUT` ao clicar em Reprovar e alterar o status para `REPROVED`
 - [x] Implementar `PUT` ao clicar em Aprovar e alterar o status para `APPROVED`
 - [x] Implementar `PUT` ao clicar em Revisar novamente e alterar o status para `REVIEW`
 - [x] Implementar `DELETE` ao clicar no lixeira no card.
-- [x] O botão de `Reprovar` e `Aprovar` só deve aparecer em admissões com o status `REVIEW` 
+- [x] O botão de `Reprovar` e `Aprovar` só deve aparecer em admissões com o status `REVIEW`
 - [x] O botão `Revisar novamente` só deve aparecer em admissões com o status `REPROVED` ou `APPROVED`
 - [x] Implementar um loading na tela ao realizar requisições.
 - [x] Todas as ações devem ter modal de confirmação e uma notificação de sucesso ou erro
 - [x] Na pesquisa por CPF realizar a requisição automaticamente ao preencher um CPF válido
 - [x] Adicionar máscara de CPF no campo de pesquisa.
 - [x] Atualizar os dados (refetch) ao clicar no ícone de atualizar
-
 
 ### Tela Cadastro
 
@@ -32,9 +40,8 @@ Esse é um desafio técnico para você demonstrar suas habilidades como frontend
 ## Extras (obrigatório)
 
 - [x] Testes Unitários e de Integração `(Obrigátorio para Senior e Tech Lead)`
-- [x] End-to-End (E2E) 
+- [x] End-to-End (E2E)
 - [x] Configuração de CI/CD com deploy automatizado
-
 
 ## Iniciando o desenvolvimento
 
@@ -67,8 +74,7 @@ yarn test
 ```
 
 Para executar o teste e2e com Cypress
+
 ```shell
 yarn test:e2e
 ```
-
-
