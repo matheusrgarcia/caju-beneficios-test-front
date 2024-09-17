@@ -31,7 +31,7 @@ const CPFMaskInput = React.forwardRef<HTMLInputElement, CPFMaskInputProps>(
 );
 
 export const NewRegistrationForm: React.FC = () => {
-  const createRegistration = useCreateRegistrationMutation();
+  const { mutate, isPending } = useCreateRegistrationMutation();
   const { openModal } = useModal();
 
   const {
@@ -49,7 +49,7 @@ export const NewRegistrationForm: React.FC = () => {
     openModal({
       title: "Confirmar cadastro de registro",
       message: `Deseja realmente salvar este registro?`,
-      onConfirm: () => createRegistration.mutate(data),
+      onConfirm: () => mutate(data),
     });
   };
 
@@ -58,14 +58,37 @@ export const NewRegistrationForm: React.FC = () => {
       <LayoutContainer centralized>
         <LayoutContainer.Content>
           <S.FormTitle>Cadastro de Registro</S.FormTitle>
-
           <TextField
             placeholder="Nome"
             label="Nome"
-            {...register("employeeName", { required: "Nome é requerido" })}
+            {...register("employeeName", {
+              required: "Nome é requerido",
+              validate: {
+                hasAtLeastTwoLettersInFirstName: (value) => {
+                  const [firstName] = value.trim().split(/\s+/);
+
+                  return (
+                    firstName.length >= 2 ||
+                    "O primeiro nome deve ter pelo menos duas letras."
+                  );
+                },
+                hasSecondNameWithAtLeastOneChar: (value) => {
+                  const names = value.trim().split(/\s+/);
+                  return (
+                    (names.length > 1 && names[1].length >= 1) ||
+                    "O sobrenome deve ter pelo menos um caractere."
+                  );
+                },
+                hasSpace: (value) =>
+                  /\s/.test(value) ||
+                  "O nome deve conter pelo menos um espaço.",
+                startsWithLetter: (value) =>
+                  /^[^\d]/.test(value) ||
+                  "O nome não pode começar com um número.",
+              },
+            })}
             error={!!errors.employeeName}
             helperText={errors.employeeName ? errors.employeeName.message : ""}
-            required
           />
 
           <TextField
@@ -154,7 +177,7 @@ export const NewRegistrationForm: React.FC = () => {
           />
         </LayoutContainer.Content>
         <LayoutContainer.Footer>
-          <LayoutContainer.Footer.ContinueButton type="submit" />
+          <LayoutContainer.Footer.ContinueButton type="submit" loading={isPending} />
         </LayoutContainer.Footer>
       </LayoutContainer>
     </S.FormCard>

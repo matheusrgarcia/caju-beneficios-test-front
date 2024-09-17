@@ -1,8 +1,8 @@
 import { FC, ReactNode } from "react";
 import { useHistory } from "react-router-dom";
-import { Button } from "../../buttons/button";
 
 import * as S from "./styles";
+import { LoadingButton } from "@mui/lab";
 
 type Props = {
   hideBackButton?: boolean;
@@ -10,7 +10,7 @@ type Props = {
   children?: ReactNode;
 };
 
-type FooterFc = FC<Props> & { ContinueButton: typeof Button };
+type FooterFc = FC<Props> & { ContinueButton: typeof LoadingButton };
 
 export const Footer: FooterFc = ({ onReturn, children }) => {
   const { goBack } = useHistory();
@@ -21,7 +21,7 @@ export const Footer: FooterFc = ({ onReturn, children }) => {
   };
 
   return (
-    <S.BottomBar>
+    <S.BottomBar data-testid="footer">
       <S.Content>
         <S.BackButton onClick={handleReturn}>Voltar</S.BackButton>
         {children}

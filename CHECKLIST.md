@@ -12,18 +12,18 @@
 - [x] O botão `Revisar novamente` só deve aparecer em admissões com o status `REPROVED` ou `APPROVED`
 - [x] Implementar um loading na tela ao realizar requisições.
 - [x] Todas as ações devem ter modal de confirmação e uma notificação de sucesso ou erro
-- [ ] Na pesquisa por CPF realizar a requisição automaticamente ao preencher um CPF válido
-- [ ] Adicionar máscara de CPF no campo de pesquisa.
-- [ ] Atualizar os dados (refetch) ao clicar no ícone de atualizar
+- [x] Na pesquisa por CPF realizar a requisição automaticamente ao preencher um CPF válido
+- [x] Adicionar máscara de CPF no campo de pesquisa.
+- [x] Atualizar os dados (refetch) ao clicar no ícone de atualizar
 
 
 ### Tela Cadastro
 
-- [ ] Implementar validação no campo de `email` para que aceite apenas emails válidos
-- [ ] Implementar validação no campo `nome completo` para que aceite pelo menos um espaço, no mínimo duas letras, e que a primeira letra não seja um número.
-- [ ] Implementar validação no campo CPF para aceitar apenas CPFs válidos e adicionar uma máscara de CPF ao campo.
-- [ ] Implementar `POST` ao preencher todos os campos corretamentes.
-- [ ] Redirecionar ao `/dashboard` ao criar uma nova admissão.
+- [x] Implementar validação no campo de `email` para que aceite apenas emails válidos
+- [x] Implementar validação no campo `nome completo` para que aceite pelo menos um espaço, no mínimo duas letras, e que a primeira letra não seja um número.
+- [x] Implementar validação no campo CPF para aceitar apenas CPFs válidos e adicionar uma máscara de CPF ao campo.
+- [x] Implementar `POST` ao preencher todos os campos corretamentes.
+- [x] Redirecionar ao `/dashboard` ao criar uma nova admissão.
 
 
 ## API
@@ -50,9 +50,9 @@ https://github.com/typicode/json-server/tree/v0?tab=readme-ov-file#filter
 
 ## Extras (obrigatório)
 
-- [ ] Testes Unitários e de Integração `(Obrigátorio para Senior e Tech Lead)`
+- [x] Testes Unitários e de Integração `(Obrigátorio para Senior e Tech Lead)`
 - [ ] End-to-End (E2E) 
-- [ ] Configuração de CI/CD com deploy automatizado
+- [x] Configuração de CI/CD com deploy automatizado
 
 ## Dicas e sugestões
 

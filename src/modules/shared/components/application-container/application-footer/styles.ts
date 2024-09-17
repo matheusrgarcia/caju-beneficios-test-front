@@ -2,6 +2,8 @@ import styled from "styled-components";
 import tokens from "~/modules/shared/tokens";
 import { Button } from "../../buttons/button";
 
+import { LoadingButton } from "@mui/lab";
+
 export const BottomBar = styled.div`
   display: flex;
   bottom: 0;
@@ -16,7 +18,7 @@ export const BackButton = styled(Button).attrs({
   type: "button",
 })``;
 
-export const FooterButton = styled(Button)`
+export const FooterButton = styled(LoadingButton)`
   margin-left: auto;
 
   ${tokens.mediaQueries.s} {

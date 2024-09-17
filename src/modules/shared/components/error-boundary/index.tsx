@@ -9,7 +9,7 @@ import routes from "~/router/routes";
 import errorStatusIcon from "./error-icon.svg";
 import { Button } from "../buttons/button";
 
-import * as S from "./index.styles";
+import * as S from "./styles";
 
 export const ErrorBoundaryFallback: FC<FallbackProps> = () => {
   const handleClick = (): void => {
