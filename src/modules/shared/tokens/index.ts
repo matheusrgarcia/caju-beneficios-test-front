@@ -28,7 +28,6 @@ export const tokens = {
     xl: "@media screen and (min-width: 1440px)",
   },
   colors: {
-    primary: "#d73540",
     secondary: "#FFFFFF",
     white: "#FFFFFF",
     black: "#000",
