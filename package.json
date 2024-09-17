@@ -8,6 +8,7 @@
     "init:db": "json-server --watch db.json",
     "build": "tsc && vite build",
     "test": "vitest",
+    "test:e2e": "npx cypress open",
     "test:dev": "jest --watch --verbose --no-cache",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview"

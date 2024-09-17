@@ -25,33 +25,10 @@
 - [x] Implementar `POST` ao preencher todos os campos corretamentes.
 - [x] Redirecionar ao `/dashboard` ao criar uma nova admissão.
 
-
-## API
-Você consumirá uma API mockada localmente, que será executada utilizando o json-server. Para mais informações consulte a [documentação](https://github.com/typicode/json-server/).
-
-Exemplo de Requisição:
-
-```
-POST http://localhost:3000/registrations
-Content-Type: application/json
-{
-  "admissionDate": "23/10/2023",
-  "email": "maria@caju.com.br",
-  "employeeName": "Maria Silva",
-  "status": "REVIEW",
-  "cpf": "12345678901"
-}
-```
-
-Para realizar a pesquisa por CPF, utilize essa funcionalidade do json-web-server:
-<br/>
-https://github.com/typicode/json-server/tree/v0?tab=readme-ov-file#filter
-
-
 ## Extras (obrigatório)
 
 - [x] Testes Unitários e de Integração `(Obrigátorio para Senior e Tech Lead)`
-- [ ] End-to-End (E2E) 
+- [x] End-to-End (E2E) 
 - [x] Configuração de CI/CD com deploy automatizado
 
 ## Dicas e sugestões
@@ -74,4 +51,3 @@ https://github.com/typicode/json-server/tree/v0?tab=readme-ov-file#filter
 - Proeficiência com automação de testes. Não exigimos 100% de cobertura
 - Senso crítico e analítico
 
-`Nos surpreenda demonstrando toda a sua habilidade e conhecimento.`
