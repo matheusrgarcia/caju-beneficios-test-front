@@ -1,6 +1,6 @@
 const routes = {
   dashboard: "/dashboard",
-  newUser: "/new-user",
+  register: "/register",
 };
 
 export default routes;

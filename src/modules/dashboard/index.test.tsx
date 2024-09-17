@@ -76,7 +76,7 @@ describe("DashboardPage Component", () => {
       await userEvent.click(newAdmissionButton);
 
       await waitFor(() => {
-        expect(mockedHistory.location.pathname).toBe("/new-user");
+        expect(mockedHistory.location.pathname).toBe("/register");
       });
     });
   });

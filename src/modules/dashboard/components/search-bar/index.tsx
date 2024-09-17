@@ -63,7 +63,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
   };
 
   const goToNewAdmissionPage = (): void => {
-    history.push(routes.newUser);
+    history.push(routes.register);
   };
 
   const handleMaskedChange = (maskedValue: string): void => {
