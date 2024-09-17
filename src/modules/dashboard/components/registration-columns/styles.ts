@@ -7,7 +7,6 @@ export const Container = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: ${tokens.space.large};
   justify-content: center;
-  margin-top: ${tokens.space.large};
   width: 100%;
 
   @media screen and (max-width: ${tokens.breakpoints.s}) {
@@ -15,6 +14,6 @@ export const Container = styled.div`
     overflow-x: auto;
     width: 100%;
     justify-content: start;
-    grid-gap: ${tokens.space.small};
+    margin-top: ${tokens.space.regular};
   }
 `;

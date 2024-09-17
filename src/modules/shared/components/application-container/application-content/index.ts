@@ -8,7 +8,8 @@ export const Content = styled.main`
   width: 100%;
   gap: ${tokens.space.large};
 
-  ${tokens.mediaQueries.s} {
-    gap: ${tokens.space.regular};
+  @media screen and (max-width: ${tokens.breakpoints.s}) {
+    height: 100%;
+    gap: 0;
   }
 `;

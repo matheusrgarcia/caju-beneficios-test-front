@@ -1,3 +1,4 @@
+import { Card } from "@mui/material";
 import styled from "styled-components";
 import tokens from "~/modules/shared/tokens";
 
@@ -14,6 +15,7 @@ export const FormCard = styled.form`
   @media screen and (max-width: ${tokens.breakpoints.s}) {
     width: 100%;
     border: none;
+    margin-top: 0;
     padding: ${tokens.space.regular};
   }
 `;
@@ -21,4 +23,19 @@ export const FormCard = styled.form`
 export const FormTitle = styled.h3`
   font-size: ${tokens.fontSizes.l};
   font-weight: ${tokens.fontWeights.light};
+`;
+
+export const FormContainer = styled(Card)`
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  max-width: 800px;
+  width: 100%;
+  gap: ${tokens.space.large};
+  padding: ${tokens.space.larger};
+
+  @media screen and (max-width: ${tokens.breakpoints.s}) {
+    height: 100%;
+    box-shadow: none !important;
+  }
 `;

@@ -57,101 +57,109 @@ export const NewRegistrationForm: React.FC = () => {
     <S.FormCard onSubmit={handleSubmit(onSubmit)}>
       <LayoutContainer centralized>
         <LayoutContainer.Content>
-          <S.FormTitle>Cadastro de Registro</S.FormTitle>
+          <S.FormContainer>
+            <S.FormTitle>Cadastro de Registro</S.FormTitle>
 
-          <TextField
-            placeholder="Nome"
-            label="Nome"
-            {...register("employeeName", { required: "Nome é requerido" })}
-            error={!!errors.employeeName}
-            helperText={errors.employeeName ? errors.employeeName.message : ""}
-            required
-          />
+            <TextField
+              placeholder="Nome"
+              label="Nome"
+              {...register("employeeName", { required: "Nome é requerido" })}
+              error={!!errors.employeeName}
+              helperText={
+                errors.employeeName ? errors.employeeName.message : ""
+              }
+              required
+            />
 
-          <TextField
-            placeholder="Email"
-            label="Email"
-            type="email"
-            {...register("email", {
-              required: "Email é requerido",
-              pattern: {
-                value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                message: "Email inválido",
-              },
-            })}
-            required
-            error={!!errors.email}
-            helperText={errors.email ? errors.email.message : ""}
-          />
+            <TextField
+              placeholder="Email"
+              label="Email"
+              type="email"
+              {...register("email", {
+                required: "Email é requerido",
+                pattern: {
+                  value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                  message: "Email inválido",
+                },
+              })}
+              required
+              error={!!errors.email}
+              helperText={errors.email ? errors.email.message : ""}
+            />
 
-          <Controller
-            name="cpf"
-            control={control}
-            rules={{
-              required: "CPF é requerido",
-              validate: (value) => isValidCPF(value) || "CPF inválido",
-            }}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="CPF"
-                variant="outlined"
-                fullWidth
-                required
-                value={field.value}
-                slotProps={{
-                  input: {
-                    inputComponent: CPFMaskInput,
-                    inputProps: {
-                      mask: CPF_MASK,
-                      onAccept: (value: string) => {
-                        setValue("cpf", value);
-                        field.onChange(value);
+            <Controller
+              name="cpf"
+              control={control}
+              rules={{
+                required: "CPF é requerido",
+                validate: (value) => isValidCPF(value) || "CPF inválido",
+              }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="CPF"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  value={field.value}
+                  slotProps={{
+                    input: {
+                      inputComponent: CPFMaskInput,
+                      inputProps: {
+                        mask: CPF_MASK,
+                        onAccept: (value: string) => {
+                          setValue("cpf", value);
+                          field.onChange(value);
+                        },
+                        overwrite: true,
                       },
-                      overwrite: true,
                     },
-                  },
-                }}
-                error={!!errors.cpf}
-                helperText={errors.cpf ? errors.cpf.message : ""}
-                placeholder="Digite um CPF válido"
-              />
-            )}
-          />
+                  }}
+                  error={!!errors.cpf}
+                  helperText={errors.cpf ? errors.cpf.message : ""}
+                  placeholder="Digite um CPF válido"
+                />
+              )}
+            />
 
-          <Controller
-            name="admissionDate"
-            control={control}
-            defaultValue=""
-            rules={{
-              required: "É necessário cadastrar uma Data de admissão",
-              validate: (value) => {
-                const isValidDate = dayjs(value, "DD/MM/YYYY", true).isValid();
-                return isValidDate || "Data inválida";
-              },
-            }}
-            render={({ field }) => (
-              <DatePicker
-                label="Data de admissão*"
-                value={field.value ? dayjs(field.value, "DD/MM/YYYY") : null}
-                onChange={(newValue) =>
-                  field.onChange(
-                    newValue ? dayjs(newValue).format("DD/MM/YYYY") : ""
-                  )
-                }
-                format="DD/MM/YYYY"
-                slotProps={{
-                  textField: {
-                    fullWidth: true,
-                    error: !!errors.admissionDate,
-                    helperText: errors.admissionDate
-                      ? errors.admissionDate.message
-                      : "",
-                  },
-                }}
-              />
-            )}
-          />
+            <Controller
+              name="admissionDate"
+              control={control}
+              defaultValue=""
+              rules={{
+                required: "É necessário cadastrar uma Data de admissão",
+                validate: (value) => {
+                  const isValidDate = dayjs(
+                    value,
+                    "DD/MM/YYYY",
+                    true
+                  ).isValid();
+                  return isValidDate || "Data inválida";
+                },
+              }}
+              render={({ field }) => (
+                <DatePicker
+                  label="Data de admissão*"
+                  value={field.value ? dayjs(field.value, "DD/MM/YYYY") : null}
+                  onChange={(newValue) =>
+                    field.onChange(
+                      newValue ? dayjs(newValue).format("DD/MM/YYYY") : ""
+                    )
+                  }
+                  format="DD/MM/YYYY"
+                  slotProps={{
+                    textField: {
+                      fullWidth: true,
+                      error: !!errors.admissionDate,
+                      helperText: errors.admissionDate
+                        ? errors.admissionDate.message
+                        : "",
+                    },
+                  }}
+                />
+              )}
+            />
+          </S.FormContainer>
         </LayoutContainer.Content>
         <LayoutContainer.Footer>
           <LayoutContainer.Footer.ContinueButton type="submit" />
