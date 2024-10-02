@@ -60,7 +60,7 @@ export const NewRegistrationForm: React.FC = () => {
   return (
     <S.FormCard onSubmit={handleSubmit(onSubmit)}>
       <LayoutContainer centralized>
-        <LayoutContainer.Content>
+        <S.FormCustomContent>
           <S.FormTitle>Cadastro de Registro</S.FormTitle>
           <TextField
             placeholder="Nome"
@@ -180,7 +180,7 @@ export const NewRegistrationForm: React.FC = () => {
               />
             )}
           />
-        </LayoutContainer.Content>
+        </S.FormCustomContent>
         <LayoutContainer.Footer>
           <LayoutContainer.Footer.ContinueButton
             type="submit"

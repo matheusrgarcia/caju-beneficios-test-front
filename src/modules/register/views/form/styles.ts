@@ -1,5 +1,6 @@
 import { Card } from "@mui/material";
 import styled from "styled-components";
+import { LayoutContainer } from "~/modules/shared/components";
 import tokens from "~/modules/shared/tokens";
 
 export const FormCard = styled.form`
@@ -38,4 +39,8 @@ export const FormContainer = styled(Card)`
     height: 100%;
     box-shadow: none !important;
   }
+`;
+
+export const FormCustomContent = styled(LayoutContainer.Content)`
+  gap: ${tokens.space.regular};
 `;
