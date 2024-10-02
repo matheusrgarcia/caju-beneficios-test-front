@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 
 import { LayoutContainer, TextField } from "~/modules/shared/components";
 import { Registration } from "~/modules/shared/types";
-import { isValidCPF } from "~/modules/shared/utils/cpf-utils";
+import { cleanCpf, isValidCPF } from "~/modules/shared/utils/cpf-utils";
 import { useModal } from "~/modules/shared/contexts";
 
 import { useCreateRegistrationMutation } from "../../mutations/use-create-registration-mutation";
@@ -46,10 +46,14 @@ export const NewRegistrationForm: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data: Registration) => {
+    const registerData = {
+      ...data,
+      cpf: cleanCpf(data.cpf),
+    };
     openModal({
       title: "Confirmar cadastro de registro",
       message: `Deseja realmente salvar este registro?`,
-      onConfirm: () => mutate(data),
+      onConfirm: () => mutate(registerData),
     });
   };
 

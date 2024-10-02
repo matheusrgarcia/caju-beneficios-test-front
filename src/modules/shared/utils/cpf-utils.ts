@@ -19,3 +19,5 @@ export const isValidCPF = (cpf: string): boolean => {
 
   return true;
 };
+
+export const cleanCpf = (value: string): string => value?.replace(/\D/g, "");

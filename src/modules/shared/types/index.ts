@@ -10,4 +10,5 @@ export type Registration = {
   email: string;
   id: string;
   status: RegistrationStatusKeys;
+  cpf: string;
 };

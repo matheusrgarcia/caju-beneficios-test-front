@@ -16,7 +16,7 @@ import { useGetRegistrationByCpfMutation } from "../../mutations/use-get-registr
 
 import * as S from "./styles";
 import { CPF_MASK } from "~/modules/shared/constants";
-import { isValidCPF } from "~/modules/shared/utils/cpf-utils";
+import { cleanCpf, isValidCPF } from "~/modules/shared/utils/cpf-utils";
 
 type SearchBarProps = {
   onChange?: (value: string) => void;
@@ -41,7 +41,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onChange, ...rest }) => {
 
   const cpfValue = watch("cpf");
 
-  const cleanCpf = (value: string): string => value?.replace(/\D/g, "");
 
   useEffect(() => {
     const debouncedSearch = debounce((cpf: string) => {
